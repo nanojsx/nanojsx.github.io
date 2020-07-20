@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nano JSX</title>
+    <link rel="stylesheet" href="./css/prism.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <h1>Nano JSX</h1>
+      <h2>Lightweight 1KB JSX library</h2>
+      <p>Documentation will soon be available.</p>
+      <pre><code class="language-js"></code></pre>
+    </div>
+
+    <script src="./js/prism.js"></script>
+    <script>
+      let code = `import Nano, { Component } from 'nano-jsx'
+
+class Names extends Component {
+  data: any
+
+  async didMount() {
+    const res = (await fetchMock('/api/names')) as any
+
+    if (res) {
+      this.data = res.data
+      this.update()
+    }
+  }
+
+  render() {
+    if (this.data) {
+      return (
+        <ul>
+          {this.data.map((d: any) => {
+            return <li>{d.name}</li>
+          })}
+        </ul>
+      )
+    } else {
+      return <div>...loading</div>
+    }
+  }
+}
+`
+
+      // Returns a highlighted HTML string
+      document.querySelector('.language-js').innerHTML = Prism.highlight(
+        code,
+        Prism.languages.tsx
+      )
+    </script>
+  </body>
+</html>
