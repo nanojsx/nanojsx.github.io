@@ -17,6 +17,7 @@ header {
 
 header #logo {
   max-width: 60%;
+  height: auto;
 }
 
 header #subtitle {
