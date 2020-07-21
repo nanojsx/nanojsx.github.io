@@ -1,0 +1,23 @@
+{
+  "short_name": "nano jsx",
+  "name": "nano jsx",
+  "description": "Lightweight 1KB JSX library",
+  "icons": [
+    {
+      "src": "/img/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#ff4e6a"
+}
