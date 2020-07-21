@@ -68,7 +68,7 @@ p {
 .benefit h2 {
   font-size: 26px;
   text-align: left;
-  line-height: 0;
+  line-height: 1;
 }
 
 .benefit {
