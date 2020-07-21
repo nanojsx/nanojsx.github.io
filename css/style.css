@@ -25,7 +25,7 @@ header #subtitle {
 }
 
 section {
-  padding: 2em 0;
+  padding: 3.6em 0;
 }
 
 section h2 {
@@ -67,11 +67,13 @@ p {
 .benefit h2 {
   font-size: 26px;
   text-align: left;
+  line-height: 0;
 }
 
 .benefit {
   margin: 16px;
   width: 280px;
+  line-height: 1;
 }
 
 /* .has-background-dark {
@@ -88,7 +90,7 @@ p {
 } */
 
 .has-background-light {
-  background-color: #dfdfdf;
+  background-color: #f4f4f4;
 }
 
 .is-center {
@@ -97,16 +99,18 @@ p {
 
 .is-container {
   max-width: 800px;
-  margin: 8px auto;
+  margin: 0px auto;
 }
 
 .is-full-width {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 .is-code {
-  background: #c1c1c1;
+  background: #d4d4d4;
   font-size: 14px;
   padding: 4px;
   border-radius: 2px;
