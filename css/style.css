@@ -12,7 +12,11 @@ header {
 
 header #logo {
   width: 100%;
-  max-width: 500px;
+  max-width: 60%;
+}
+
+header #subtitle {
+  color: black;
 }
 
 section {
@@ -21,7 +25,6 @@ section {
 
 section h2 {
   text-align: center;
-  font-size: 36px;
 }
 
 h1,
@@ -33,11 +36,11 @@ h4 {
 }
 
 h2 {
-  font-size: 26px;
+  font-size: 32px;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 26px;
 }
 
 p {
@@ -50,16 +53,55 @@ p {
 }
 
 .benefits {
-  margin-top: 64px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.benefit h2 {
+  font-size: 26px;
+  text-align: left;
+}
+
 .benefit {
   margin: 16px;
   width: 280px;
 }
 
+/* .has-background-dark {
+  background-color: #272a36;
+}
+.has-background-dark p {
+  color: white;
+}
+.has-background-dark h1,
+.has-background-dark h2,
+.has-background-dark h3,
+.has-background-dark h4 {
+  color: #dfdfdf;
+} */
+
+/* .has-background-light {
+  background-color: #dfdfdf;
+} */
+
 .is-center {
   text-align: center;
+}
+
+.is-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.is-full-width {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* mobile-only */
+@media only screen and (max-width: 420px) {
+  header h2 {
+    font-size: 20px;
+  }
 }
