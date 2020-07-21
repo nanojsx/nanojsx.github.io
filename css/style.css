@@ -3,6 +3,11 @@ html {
   /* background-color: #21222c; */
   font-family: Arial, Helvetica, sans-serif;
   /* color: #b0b0b0; */
+  overflow-x: hidden;
+}
+
+body {
+  margin: 8px;
 }
 
 header {
@@ -44,7 +49,8 @@ h3 {
 }
 
 p {
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.4em;
 }
 
 #root {
@@ -81,9 +87,9 @@ p {
   color: #dfdfdf;
 } */
 
-/* .has-background-light {
+.has-background-light {
   background-color: #dfdfdf;
-} */
+}
 
 .is-center {
   text-align: center;
@@ -91,12 +97,19 @@ p {
 
 .is-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 8px auto;
 }
 
 .is-full-width {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+}
+
+.is-code {
+  background: #c1c1c1;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 2px;
 }
 
 /* mobile-only */

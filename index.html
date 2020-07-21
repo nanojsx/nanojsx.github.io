@@ -47,6 +47,33 @@
         </div>
       </section>
 
+      <section class="is-full-width has-background-light">
+        <div class="is-container">
+          <h2>Why</h2>
+          <p>
+            Well, in the past, I did a lot of websites using Isomorphic React
+            (Pre-Rendering on the Server and Hydrating on the client). Once the
+            website did load all scripts, it was very fast (not so much on
+            mobile though). But the scripts where always way too big.
+          </p>
+          <p>
+            Nowadays, I prefer to Pre-Render the JSX on the server and only
+            Hydrate the parts that are really needed. The client now only gets
+            few kilobytes and uses much less CPU.
+          </p>
+          <p>
+            Of course with this approach, the client does not have a router and
+            must thus fetch each new site on navigating to it. But this is not
+            really a problem since the static html is usually very small and we
+            can easily prefetch pages using
+            <code class="is-code">
+              &lt;link rel="prefetch" href="/about.html" as="document"&gt;</code
+            >
+            on page load or on hovering over a link.
+          </p>
+        </div>
+      </section>
+
       <section>
         <h2>Get Started</h2>
         <h3>Fetch Data</h3>
