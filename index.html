@@ -3,55 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nano JSX</title>
-    <link rel="stylesheet" href="./css/prism.css" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <title>Nano JSX &bull; Lightweight 1KB JSX library</title>
+    <meta
+      name="description"
+      content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Perfect for your next PWA. Smaller than svelte."
+    />
+    <link rel="stylesheet" href="./css/prism.css?ver=0.0.1" />
+    <link rel="stylesheet" href="./css/style.css?ver=0.0.1" />
   </head>
   <body>
     <div id="root">
-      <h1>Nano JSX</h1>
-      <h2>Lightweight 1KB JSX library</h2>
-      <p>Documentation will soon be available.</p>
-      <pre><code class="language-js"></code></pre>
+      <header>
+        <div class="is-center">
+          <img id="logo" src="./img/logo.png" alt="nano jsx logo" />
+        </div>
+        <h2 class="is-center">Ultra Lightweight 1KB JSX library.</h2>
+        <div class="benefits">
+          <div class="benefit">
+            <h2 class="benefit-title">No Virtual Dom</h2>
+            <p class="benefit-text">Just pure and fast JavaScript rendering.</p>
+          </div>
+          <div class="benefit">
+            <h2 class="benefit-title">SSR First Approach</h2>
+            <p class="benefit-text">Designed to run on nodejs.</p>
+          </div>
+          <div class="benefit">
+            <h2 class="benefit-title">Partial Hydration</h2>
+            <p class="benefit-text">Hydrate only the parts you really need.</p>
+          </div>
+          <div class="benefit">
+            <h2 class="benefit-title">Ultra Lightweight</h2>
+            <p class="benefit-text">
+              Generates even smaller bundles than svelte.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <h2>Get Started</h2>
+        <h3>Fetch Data</h3>
+        <p>Fetch data inside didMount().</p>
+        <pre><code id="fetch" class="language-tsx"></code></pre>
+        <h3>Store</h3>
+        <p>Use an external store, to store your application's state.</p>
+        <pre><code id="store" class="language-tsx"></code></pre>
+        <h3>SSR</h3>
+        <p>SSR example with the built-in Helmet component.</p>
+        <pre><code id="ssr" class="language-tsx"></code></pre>
+      </section>
+      <footer></footer>
     </div>
 
-    <script src="./js/prism.js"></script>
+    <script src="./js/prism.js?ver=0.0.1"></script>
+    <script src="./js/code.js?ver=0.0.1"></script>
     <script>
-      let code = `import Nano, { Component } from 'nano-jsx'
-
-class Names extends Component {
-  data: any
-
-  async didMount() {
-    const res = (await fetchMock('/api/names')) as any
-
-    if (res) {
-      this.data = res.data
-      this.update()
-    }
-  }
-
-  render() {
-    if (this.data) {
-      return (
-        <ul>
-          {this.data.map((d: any) => {
-            return <li>{d.name}</li>
-          })}
-        </ul>
-      )
-    } else {
-      return <div>...loading</div>
-    }
-  }
-}
-`
-
-      // Returns a highlighted HTML string
-      document.querySelector('.language-js').innerHTML = Prism.highlight(
-        code,
-        Prism.languages.tsx
-      )
+      for (const [key, value] of Object.entries(code)) {
+        document.getElementById(key).innerHTML = Prism.highlight(
+          value,
+          Prism.languages.tsx
+        )
+      }
     </script>
   </body>
 </html>
