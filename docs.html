@@ -4,98 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ff4e6a" />
-    <title>Nano JSX &bull; Lightweight 1KB JSX library</title>
-    <meta
-      name="description"
-      content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Perfect for your next PWA. Smaller than svelte."
-    />
+    <title>Nano JSX &bull; Docs</title>
+    <meta name="description" content="Documentation" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/css/style.css?ver=0.0.1" />
-    <link rel="prefetch" href="/docs.html" as="document" />
+    <link rel="prefetch" href="/" as="document" />
   </head>
   <body>
     <div id="root">
       <header>
-        <div class="is-center">
-          <picture>
-            <source srcset="/img/logo.webp" type="image/webp" />
-            <source srcset="/img/logo.png" type="image/jpeg" />
-            <img
-              id="logo"
-              width="603"
-              height="228"
-              src="/img/logo.png"
-              alt="nano jsx logo"
-            />
-          </picture>
-        </div>
-        <h2 id="subtitle" class="is-center">Lightweight 1KB JSX library</h2>
-        <p id="tags" class="is-center has-color-gray">
-          TypeScript • Ultra Lightweight • SSR First
-        </p>
         <ul id="home-navigation" class="is-center">
-          <li><a href="/docs.html">Documentation</a></li>
+          <li><a href="/">Home</a></li>
         </ul>
       </header>
 
       <section>
-        <div class="benefits">
-          <div class="benefit">
-            <h2 class="benefit-title">No Virtual Dom</h2>
-            <p class="benefit-text">
-              Just pure and fast JavaScript rendering.
-            </p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">SSR First Approach</h2>
-            <p class="benefit-text">Designed to run on nodejs.</p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">Partial Hydration</h2>
-            <p class="benefit-text">
-              Hydrate only the parts you really need.
-            </p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">Ultra Lightweight</h2>
-            <p class="benefit-text">
-              Generates even smaller bundles than svelte.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="is-full-width has-background-light">
-        <div class="is-container">
-          <h2>Why</h2>
-          <p>
-            Well, in the past, I did a lot of websites using Isomorphic React
-            (Pre-Rendering on the Server and Hydrating on the client). Once the
-            website did load all scripts, it was very fast (not so much on
-            mobile though). But the scripts where always way too big.
-          </p>
-          <p>
-            Nowadays, I prefer to Pre-Render the JSX on the server and only
-            Hydrate the parts that are really needed. The client now only gets
-            few kilobytes and uses much less CPU.
-          </p>
-          <p>
-            Of course with this approach, the client does not have a router and
-            must thus fetch each new site on navigating to it. But this is not
-            really a problem since the static html is usually very small and we
-            can easily prefetch pages using
-            <code class="is-code">
-              &lt;link rel="prefetch" href="/about.html" as="document"&gt;</code
-            >
-            on page load or on hovering over a link.
-          </p>
-        </div>
-      </section>
-
-      <section>
         <h2>Get Started</h2>
-        <h3>Todo List</h3>
-        <pre><code id="todoList" class="language-tsx">loading...</code></pre>
+        <h3>Fetch Data</h3>
+        <p>Fetch data inside didMount().</p>
+        <pre><code id="fetch" class="language-tsx">loading...</code></pre>
+        <h3>Store</h3>
+        <p>Use an external store, to store your application's state.</p>
+        <pre><code id="store" class="language-tsx">loading...</code></pre>
+        <h3>SSR</h3>
+        <p>SSR example with the built-in Helmet component.</p>
+        <pre><code id="ssr" class="language-tsx">loading...</code></pre>
       </section>
 
       <footer class="is-full-width has-background-light">
@@ -196,11 +129,9 @@
 
     <!-- prism scripts -->
 
-    <link rel="stylesheet" href="/css/prism.css?ver=0.0.1" />
-    <script src="/js/prism.js?ver=0.0.1"></script>
-    <script>
-      const code = { todoList: `<div>coming soon :)</div>` }
-    </script>
+    <link rel="stylesheet" href="./css/prism.css?ver=0.0.1" />
+    <script src="./js/prism.js?ver=0.0.1"></script>
+    <script src="./js/code.js?ver=0.0.1"></script>
     <script>
       window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {

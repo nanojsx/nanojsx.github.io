@@ -22,6 +22,7 @@ header #logo {
 
 header #subtitle {
   color: black;
+  font-size: 36px;
 }
 
 header,
@@ -53,6 +54,16 @@ h3 {
 p {
   font-size: 20px;
   line-height: 1.4em;
+}
+
+a {
+  text-decoration: none;
+  color: #ff4e6a;
+  font-size: 20px;
+}
+
+li {
+  list-style: none;
 }
 
 #root {
@@ -93,6 +104,10 @@ p {
 
 .has-background-light {
   background-color: #f4f4f4;
+}
+
+.has-color-gray {
+  color: gray;
 }
 
 .is-center {
