@@ -1,4 +1,35 @@
 const code = {
+  todoList: `import Nano, { Component } from 'nano-jsx'
+
+  class Todos extends Component {
+    todos: string[] = []
+  
+    submitHandler(e: Event) {
+      e.preventDefault()
+      const input = document.getElementById('input') as HTMLInputElement
+      this.todos.push(input.value)
+      this.update()
+    }
+  
+    render() {
+      return (
+        <form onSubmit={(e: Event) => this.submitHandler(e)}>
+          <label>
+            <span>Add Todo</span>
+            <input id="input" />
+          </label>
+          <button type="submit">Add</button>
+          <ul>
+            {this.todos.map((todo) => (
+              <li>{todo}</li>
+            ))}
+          </ul>
+        </form>
+      )
+    }
+  }
+  
+  Nano.render(<Todos />, document.getElementById('root'))`,
   fetch: `import Nano, { Component } from 'nano-jsx'
 
 class Names extends Component {
@@ -98,7 +129,7 @@ const App = () => {
 }
 
 const app = Nano.renderSSR(<App />)
-const { body, head, footer } = Helmet.SSR(app.join('\\n'))
+const { body, head, footer } = Helmet.SSR(app)
 
 const html = \`
 <!DOCTYPE html>
