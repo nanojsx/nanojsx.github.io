@@ -67,35 +67,159 @@
 
       <section class="is-full-width has-background-light">
         <div class="is-container">
-          <h2>Why</h2>
-          <p>
-            Well, in the past, I did a lot of websites using Isomorphic React
-            (Pre-Rendering on the Server and Hydrating on the client). Once the
-            website did load all scripts, it was very fast (not so much on
-            mobile though). But the scripts where always way too big.
-          </p>
-          <p>
-            Nowadays, I prefer to Pre-Render the JSX on the server and only
-            Hydrate the parts that are really needed. The client now only gets
-            few kilobytes and uses much less CPU.
-          </p>
-          <p>
-            Of course with this approach, the client does not have a router and
-            must thus fetch each new site on navigating to it. But this is not
-            really a problem since the static html is usually very small and we
-            can easily prefetch pages using
-            <code class="is-code">
-              &lt;link rel="prefetch" href="/about.html" as="document"&gt;</code
-            >
-            on page load or on hovering over a link.
-          </p>
+          <div id="code-style-switcher">
+            <p data-tab="counterJSX" id="show-jsx" class="is-active">JSX</p>
+            <p data-tab="counterJavaScript" id="show-javascript">JavaScript</p>
+            <p data-tab="counterTaggedTemplates" id="show-tagged-templates">
+              Tagged Templates
+            </p>
+          </div>
+          <pre
+            class="has-no-border-radius-top-left has-no-margin-top"
+          ><code id="counterJSX" class="language-tsx">loading...</code></pre>
+          <pre
+            class="has-no-border-radius-top-left has-no-margin-top is-hidden"
+          ><code id="counterJavaScript" class="language-tsx">loading...</code></pre>
+          <pre
+            class="has-no-border-radius-top-left has-no-margin-top is-hidden"
+          ><code id="counterTaggedTemplates" class="language-tsx ">loading...</code></pre>
+
+          <div id="code-result">
+            <div id="counter-value">Counter: 0</div>
+            <button id="button-increment">Increment</button>
+            <button id="button-decrement">Decrement</button>
+
+            <style>
+              #code-result {
+                border: 2px #cac9c9 solid;
+                border-radius: 4px;
+                padding: 24px;
+                background: #ebebeb;
+                margin-top: 16px;
+              }
+
+              #code-result div {
+                font-size: 22px;
+              }
+
+              #code-result button {
+                cursor: pointer;
+                border: none;
+                background: #ff4e6a;
+                color: white;
+                padding: 12px 16px;
+                border-radius: 4px;
+                font-size: 18px;
+                margin-top: 16px;
+                outline: none;
+              }
+              #code-result button:hover {
+                background: #ff3d5a;
+              }
+            </style>
+
+            <script>
+              let counterValue = 0
+              const valueElement = document.getElementById('counter-value')
+
+              const setValue = newValue => {
+                counterValue += newValue
+                valueElement.innerHTML = `Counter: ${counterValue}`
+              }
+              const buttonI = document
+                .getElementById('button-increment')
+                .addEventListener('click', () => setValue(1))
+              const buttonD = document
+                .getElementById('button-decrement')
+                .addEventListener('click', () => setValue(-1))
+            </script>
+          </div>
         </div>
       </section>
 
+      <style>
+        #code-style-switcher {
+          background-color: #1f2230;
+          border-radius: 8px 8px 0px 0px;
+          display: inline-flex;
+          margin-bottom: -1px;
+        }
+        #code-style-switcher p {
+          font-size: 18px;
+          cursor: pointer;
+          color: white;
+          padding: 16px 16px;
+          margin: 0;
+          border-radius: inherit;
+        }
+        #code-style-switcher p:hover {
+          background-color: #161927;
+        }
+        #code-style-switcher p.is-active {
+          background-color: #272a36;
+        }
+        /* mobile-only */
+        @media only screen and (max-width: 420px) {
+          #code-style-switcher p {
+            font-size: 16px;
+            padding: 12px 12px;
+          }
+        }
+      </style>
+
+      <script>
+        const styleSwitcher = document.getElementById('code-style-switcher')
+        const c = styleSwitcher.children
+        for (i = 0; i < c.length; i++) {
+          c[i].addEventListener('click', function() {
+            const attr = this.getAttribute('data-tab')
+            const tabs = [
+              'counterJSX',
+              'counterJavaScript',
+              'counterTaggedTemplates'
+            ]
+
+            for (i = 0; i < c.length; i++) {
+              c[i].classList.remove('is-active')
+            }
+            this.classList.add('is-active')
+
+            tabs.forEach(t => {
+              const tab = document.getElementById(t)
+              if (tab.id === attr)
+                tab.parentElement.classList.remove('is-hidden')
+              else tab.parentElement.classList.add('is-hidden')
+            })
+          })
+        }
+      </script>
+
       <section>
-        <h2>Get Started</h2>
-        <h3>Counter App</h3>
-        <pre><code id="counter" class="language-tsx">loading...</code></pre>
+        <h2>Why</h2>
+        <p>
+          Well, in the past, I did a lot of websites using Isomorphic React
+          (Pre-Rendering on the Server and Hydrating on the client). Once the
+          website did load all scripts, it was very fast (not so much on mobile
+          though). But the scripts where always way too big.
+        </p>
+        <p>
+          Nowadays, I prefer to Pre-Render the JSX on the server and only
+          Hydrate the parts that are really needed. The client now only gets few
+          kilobytes and uses much less CPU.
+        </p>
+        <p>
+          Of course with this approach, the client does not have a router and
+          must thus fetch each new site on navigating to it. But this is not
+          really a problem since the static html is usually very small and we
+          can easily prefetch pages using
+          <code class="is-code">
+            &lt;link rel="prefetch" href="/about.html" as="document"&gt;</code
+          >
+          on page load or on hovering over a link.
+        </p>
+      </section>
+
+      <section>
         <h3>Todo List</h3>
         <pre><code id="todoList" class="language-tsx">loading...</code></pre>
       </section>
@@ -202,11 +326,8 @@
     <script src="/js/prism.js?ver=0.0.1"></script>
     <script>
       const code = {
-        counter: `import Nano, { Component, Fragment, jsx } from 'nano-jsx'
-
-/**
- * JSX 
- */    
+        counterJSX: `import Nano, { Component, Fragment } from 'nano-jsx'
+  
 class Counter extends Component {
   value = 0
 
@@ -225,13 +346,10 @@ class Counter extends Component {
     )
   }
 }
-Nano.render(<Counter />, document.getElementById('root'))
+Nano.render(<Counter />, document.getElementById('root'))`,
+        counterJavaScript: `import Nano, { Component, Fragment } from 'nano-jsx'
 
-
-/**
- * without JSX (no build tools needed)
- */ 
-class Counters extends Component {
+class Counter extends Component {
   value = 0
 
   changeValue(newValue: number) {
@@ -248,12 +366,9 @@ class Counters extends Component {
     )
   }
 }
-Nano.render(Nano.h(Counters, null), document.getElementById('root'))
+Nano.render(Nano.h(Counter, null), document.getElementById('root'))`,
+        counterTaggedTemplates: `import Nano, { Component, Fragment, jsx } from 'nano-jsx'
 
-
-/**
- * Tagged Templates (no build tools needed)
- */ 
 class Counter extends Component {
   value = 0
 

@@ -107,6 +107,14 @@ li {
   color: #dfdfdf;
 } */
 
+.has-no-border-radius-top-left {
+  border-top-left-radius: 0px !important;
+}
+
+.has-no-margin-top {
+  margin-top: 0px !important;
+}
+
 .has-background-light {
   background-color: #f4f4f4;
 }
@@ -136,6 +144,10 @@ li {
   font-size: 14px;
   padding: 4px;
   border-radius: 2px;
+}
+
+.is-hidden {
+  display: none;
 }
 
 /* mobile-only */
