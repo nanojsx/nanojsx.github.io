@@ -94,6 +94,8 @@
 
       <section>
         <h2>Get Started</h2>
+        <h3>Counter App</h3>
+        <pre><code id="counter" class="language-tsx">loading...</code></pre>
         <h3>Todo List</h3>
         <pre><code id="todoList" class="language-tsx">loading...</code></pre>
       </section>
@@ -199,7 +201,109 @@
     <link rel="stylesheet" href="/css/prism.css?ver=0.0.1" />
     <script src="/js/prism.js?ver=0.0.1"></script>
     <script>
-      const code = { todoList: `<div>coming soon :)</div>` }
+      const code = {
+        counter: `import Nano, { Component, Fragment, jsx } from 'nano-jsx'
+
+/**
+ * JSX 
+ */    
+class Counter extends Component {
+  value = 0
+
+  changeValue(newValue: number) {
+    this.value += newValue
+    this.update()
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <div>Counter: {this.value}</div>
+        <button onClick={() => this.changeValue(1)}>Increment</button>
+        <button onClick={() => this.changeValue(-1)}>Decrement</button>
+      </Fragment>
+    )
+  }
+}
+Nano.render(<Counter />, document.getElementById('root'))
+
+
+/**
+ * without JSX (no build tools needed)
+ */ 
+class Counters extends Component {
+  value = 0
+
+  changeValue(newValue: number) {
+    this.value += newValue
+    this.update()
+  }
+  render() {
+    return Nano.h(
+      Fragment,
+      null,
+      Nano.h('div', null, 'Counter: ', this.value),
+      Nano.h('button', { onClick: () => this.changeValue(1) }, 'Increment'),
+      Nano.h('button', { onClick: () => this.changeValue(-1) }, 'Decrement')
+    )
+  }
+}
+Nano.render(Nano.h(Counters, null), document.getElementById('root'))
+
+
+/**
+ * Tagged Templates (no build tools needed)
+ */ 
+class Counter extends Component {
+  value = 0
+
+  changeValue(newValue: number) {
+    this.value += newValue
+    this.update()
+  }
+
+  render() {
+    return jsx\`
+      <\${Fragment}>
+        <div>Counter: \${this.value}</div>
+        <button onClick=\${() => this.changeValue(1)}>Increment</button>
+        <button onClick=\${() => this.changeValue(-1)}>Decrement</button>
+      </\${Fragment}>\`
+  }
+}
+Nano.render(jsx\`<\${Counter} />\`, document.getElementById('root'))`,
+        todoList: `import Nano, { Component } from 'nano-jsx'
+
+class Todos extends Component {
+  todos: string[] = []
+
+  submitHandler(e: Event) {
+    e.preventDefault()
+    const input = document.getElementById('input') as HTMLInputElement
+    this.todos.push(input.value)
+    this.update()
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e: Event) => this.submitHandler(e)}>
+        <label>
+          <span>Add Todo</span>
+          <input id="input" />
+        </label>
+        <button type="submit">Add</button>
+        <ul>
+          {this.todos.map((todo) => (
+            <li>{todo}</li>
+          ))}
+        </ul>
+      </form>
+    )
+  }
+}
+
+Nano.render(<Todos />, document.getElementById('root'))`
+      }
     </script>
     <script>
       window.addEventListener('load', event => {

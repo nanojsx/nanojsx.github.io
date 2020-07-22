@@ -62,6 +62,11 @@ a {
   font-size: 20px;
 }
 
+ul,
+ol {
+  padding: unset;
+}
+
 li {
   list-style: none;
 }

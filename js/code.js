@@ -5,7 +5,7 @@ class Names extends Component {
   data: any
 
   async didMount() {
-    const res = (await fetchMock('/api/names')) as any
+    const res = await fetch('/api/names') as any
 
     if (res) {
       this.data = res.data
