@@ -32,7 +32,7 @@ footer {
 }
 
 footer {
-  background-color: #ebebeb;
+  background-color: rgba(238, 238, 238, 1);
 }
 
 section h2 {
@@ -120,7 +120,13 @@ li {
 }
 
 .has-background-light {
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
+  background: rgb(244, 244, 244);
+  background: linear-gradient(
+    0deg,
+    rgba(238, 238, 238, 1) 0%,
+    rgba(248, 248, 248, 1) 100%
+  );
 }
 
 .has-color-gray {
@@ -173,6 +179,33 @@ li {
   align-items: flex-start;
   justify-content: space-evenly;
   max-width: 100%;
+}
+
+.code-example.code-side-by-side {
+  display: flex;
+  align-items: stretch;
+}
+
+.code-example.code-side-by-side .code-highlight {
+  width: calc(50% - 1px);
+}
+
+.code-example.code-side-by-side > :first-child {
+  border-right: 2px rgb(177, 177, 177) solid;
+}
+
+.code-example.code-side-by-side > :first-child > :first-child {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.code-example.code-side-by-side > :last-child > :first-child {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.code-example.code-side-by-side pre {
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .code-example-tabs .code-result {
