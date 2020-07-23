@@ -249,3 +249,8 @@ pre[class*='language-'] {
 .code-result button:hover {
   background: #ff3d5a;
 }
+
+.code-fit-width {
+  max-width: fit-content;
+  margin: 0 auto !important;
+}
