@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <meta name="theme-color" content="#ff4e6a" />
     <title>Nano JSX &bull; Lightweight 1KB JSX library</title>
     <meta
@@ -10,7 +13,7 @@
       content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Server Side first with partial hydration. Perfect for your next PWA. As small as svelte."
     />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/css/style.css?ver=0.0.4" />
+    <link rel="stylesheet" href="/css/style.css?ver=0.0.5" />
     <link rel="prefetch" href="/docs.html" as="document" />
     <link rel="prefetch" href="/components.html" as="document" />
   </head>
@@ -276,7 +279,7 @@
           <h2>Project Template</h2>
           <p class="has-text-centered">Available Soon</p>
           <pre
-            style="width: fit-content; margin:0 auto;"
+            style="max-width: fit-content; margin:0 auto;"
           ><code id="projectTemplate" class="language-console">loading...</code></pre>
         </div>
       </section>
@@ -379,8 +382,8 @@
 
     <!-- prism scripts -->
 
-    <link rel="stylesheet" href="/css/prism.css?ver=0.0.4" />
-    <script src="/js/prism.js?ver=0.0.4"></script>
+    <link rel="stylesheet" href="/css/prism.css?ver=0.0.5" />
+    <script src="/js/prism.js?ver=0.0.5"></script>
     <script>
       const code = {
         counterJSX: `import Nano, { Component, Fragment } from 'nano-jsx'
