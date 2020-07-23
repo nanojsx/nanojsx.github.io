@@ -137,10 +137,12 @@
     <script>
       window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {
-          document.getElementById(key).innerHTML = Prism.highlight(
-            value,
-            Prism.languages.tsx
-          )
+          setTimeout(() => {
+            document.getElementById(key).innerHTML = Prism.highlight(
+              value,
+              Prism.languages.tsx
+            )
+          }, 0)
         }
       })
     </script>
