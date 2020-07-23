@@ -7,35 +7,41 @@
     <title>Nano JSX &bull; Lightweight 1KB JSX library</title>
     <meta
       name="description"
-      content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Perfect for your next PWA. Smaller than svelte."
+      content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Server Side first with partial hydration. Perfect for your next PWA. As small as svelte."
     />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/css/style.css?ver=0.0.4" />
     <link rel="prefetch" href="/docs.html" as="document" />
+    <link rel="prefetch" href="/components.html" as="document" />
   </head>
   <body>
     <div id="root">
       <header>
         <div class="is-center">
-          <picture>
-            <source srcset="/img/logo.webp" type="image/webp" />
-            <source srcset="/img/logo.png" type="image/jpeg" />
-            <img
-              id="logo"
-              width="603"
-              height="228"
-              src="/img/logo.png"
-              alt="nano jsx logo"
-            />
-          </picture>
+          <img
+            id="logo"
+            width="603"
+            height="228"
+            src="/img/logo.svg"
+            alt="nano jsx logo"
+          />
         </div>
         <h2 id="subtitle" class="is-center">Lightweight 1KB JSX library</h2>
         <p id="tags" class="is-center has-color-gray">
           TypeScript • Ultra Lightweight • SSR First
         </p>
-        <ul id="home-navigation" class="is-center">
-          <li><a href="/docs.html">Documentation</a></li>
-        </ul>
+        <div id="home-navigation" class="is-center">
+          <ul>
+            <li><a href="/docs.html">Documentation</a></li>
+            <li><a href="/components.html">Components</a></li>
+          </ul>
+        </div>
+        <style>
+          #home-navigation ul li {
+            display: inline-block;
+            margin: 0px 6px;
+          }
+        </style>
       </header>
 
       <section>
@@ -209,6 +215,26 @@
         </div>
       </section>
 
+      <section>
+        <h2>Partial Hydration</h2>
+        <p>
+          The library by it self is already very small, but in combination with
+          its awesome capabilities, it becomes even faster.
+        </p>
+        <p>
+          It's designed to be pre-rendered on the server and to then be
+          partially hydrated on the client. The client will therefore have to
+          download and render much less code.
+        </p>
+        <pre><code id="partialHydrationShowcase" class="language-tsx">loading...</code></pre>
+        <h3>Lazy Hydration</h3>
+        <p>
+          Not every component needs to be hydrated immediately. Lazy Hydration
+          reduces First Input Delay (FID).
+        </p>
+        <pre><code id="hydrateLazy" class="language-tsx">loading...</code></pre>
+      </section>
+
       <section class="is-full-width has-background-light">
         <div class="is-container">
           <h2>Svelte vs Nano JSX</h2>
@@ -227,10 +253,31 @@
             </div>
             <div class="code-highlight">
               <pre
-                class="has-no-margin-top  "
+                class="has-no-margin-top"
               ><code id="compareNanoJSX" class="language-tsx">loading...</code></pre>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Built-In Component</h2>
+        <p>
+          Nano JSX provides some useful Built-In Component, like Link, Img,
+          Visible and Helmet and hopefully many many more in the future. All
+          Built-In Components are as lightweight as possible and especially
+          designed for Nano JSX.
+        </p>
+        <p>Visit <a href="/components.html">Components</a> to learn more.</p>
+      </section>
+
+      <section class="is-full-width has-background-light">
+        <div class="is-container">
+          <h2>Project Template</h2>
+          <p class="has-text-centered">Available Soon</p>
+          <pre
+            style="width: fit-content; margin:0 auto;"
+          ><code id="projectTemplate" class="language-console">loading...</code></pre>
         </div>
       </section>
 
@@ -433,6 +480,37 @@ const html = \`
   \<\/body>
 </html>
 `,
+        partialHydrationShowcase: `<App>
+  <Header>
+    <Logo />
+    <Navigation />
+  <Header>
+
+  <Main>
+    <Content />
+    <Comments />
+  <Main />
+</App>
+
+// render the App on the server
+renderSSR(<App />)
+
+// send and hydrate only what the client needs
+hydrate(<Navigation />)
+hydrate(<Comments />)
+`,
+        hydrateLazy: `// do not pre-render Comments
+<Comments noSSR />
+
+// will be hydrated once scrolling to the comments section
+hydrateLazy(<Comments />)
+`,
+        projectTemplate: `npx degit nanojsx/template nano-jsx-project
+
+cd nano-jsx-project
+
+npm install
+npm run dev`,
         compareSvelte: `// App.svelte
 <script>
   export let name;

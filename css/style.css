@@ -8,7 +8,7 @@ html {
 
 body {
   display: block;
-  margin: 8px;
+  margin: 0px 8px;
 }
 
 header {
@@ -35,7 +35,9 @@ footer {
   background-color: rgba(238, 238, 238, 1);
 }
 
-section h2 {
+section h2,
+section h3,
+section h4 {
   text-align: center;
 }
 
@@ -133,7 +135,8 @@ li {
   color: gray;
 }
 
-.is-center {
+.is-center,
+.has-text-centered {
   text-align: center;
 }
 
