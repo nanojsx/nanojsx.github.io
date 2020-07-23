@@ -216,13 +216,16 @@ li {
   max-width: 100%;
 }
 
+pre[class*='language-'] {
+  box-shadow: 4px 4px 20px 6px rgb(0 0 0 / 20%);
+}
+
 .code-result {
-  border: 2px #cac9c9 solid;
   border-radius: 4px;
   padding: 24px;
-  background: #ebebeb;
   margin-top: 8px;
   max-width: 100%;
+  box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
 }
 
 .code-result div {
