@@ -146,5 +146,39 @@ const html = \`
 </html>
 \`
 
-// now send the html to the client`
+// now send the html to the client`,
+  taggedTemplates: `<script>
+  const { render, jsx, Link } = nanoJSX
+
+  const names = ['joe', 'suzanne']
+
+  const Names = (props) => {
+    return jsx\`
+      <ul>
+        \${names.map(name => {
+          return jsx\`<li>${name}</li>\`
+        })}
+      </ul>\`
+  }
+
+  const App = () => {
+    return jsx\`
+    <div>
+
+      <!-- Listen for the click event -->
+      <h2 onClick="\${() => console.log('click')}">List of names</h2>
+
+      <!-- Render the Names component -->
+      <\${Names} />
+
+      <!-- Use the built-in Link component -->
+      <\${Link} prefetch="hover" href="https://geckosio.github.io/">
+        Link
+      </\${Link}>
+
+    </div>\`
+  }
+
+  render(App, document.getElementById('root'))
+</script>`
 }
