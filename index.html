@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta name="theme-color" content="#ff4e6a" />
-    <title>Nano JSX &bull; Lightweight 1KB JSX library</title>
+    <title>Nano JSX &bull; Lightweight 1kB JSX library</title>
     <meta
       name="description"
       content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Server Side first with partial hydration. Perfect for your next PWA. As small as svelte."
@@ -29,7 +29,7 @@
             alt="nano jsx logo"
           />
         </div>
-        <h2 id="subtitle" class="is-center">Lightweight 1KB JSX library</h2>
+        <h2 id="subtitle" class="is-center">Lightweight 1kB JSX library</h2>
         <p id="tags" class="is-center has-color-gray">
           TypeScript • Ultra Lightweight • SSR First
         </p>
@@ -242,12 +242,15 @@
         <div class="is-container">
           <h2 class="has-text-centered">Svelte vs Nano JSX</h2>
           <p>
-            Although, the simple example below is 0.2kb bigger using nano JSX,
+            Although, the simple example below is 0.2kB bigger using nano JSX,
             once adding more features to your App like Event Handling, Component
             Lifecycle, Store or SVG support, the nano JSX application will
             generate a slightly smaller bundle size compared to Svelte.
           </p>
-          <p>The same app in preact is 4.7kb and 41.7kb in react.</p>
+          <p>
+            The same app with preact is 4.7kB, 8.6kB with inferno and 41.7kB
+            with react.
+          </p>
           <div class="code-example code-side-by-side">
             <div class="code-highlight">
               <pre
@@ -533,7 +536,7 @@ const app = new App({
 
 export default app;
 
-// 1.7KB (gzip)
+// 1.7kB (gzip)
 `,
         compareNanoJSX: `// App.tsx
 import Nano from 'nano-jsx'
@@ -554,7 +557,7 @@ Nano.render(
 
 
 
-// 1.9KB (gzip)`
+// 1.9kB (gzip)`
       }
     </script>
     <script>
