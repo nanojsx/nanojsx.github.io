@@ -7,12 +7,12 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta name="theme-color" content="#ff4e6a" />
-    <title>Nano JSX &bull; Built-In Components</title>
+    <title>Nano JSX &bull; Examples</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/css/style.css?ver=0.0.5" />
     <link rel="prefetch" href="/" as="document" />
     <link rel="prefetch" href="/docs.html" as="document" />
-    <link rel="prefetch" href="/examples.html" as="document" />
+    <link rel="prefetch" href="/components.html" as="document" />
   </head>
   <body>
     <div id="root">
@@ -20,39 +20,31 @@
         <ul id="home-navigation" class="is-center">
           <li><a href="/">Home</a></li>
           <li><a href="/docs.html">Documentation</a></li>
-          <li><a href="/examples.html">Examples</a></li>
+          <li><a href="/components.html">Components</a></li>
         </ul>
       </header>
 
       <section>
-        <h1>Built-In Components</h1>
+        <h1>Examples</h1>
 
-        <h2>&lt;Link /&gt;</h2>
-        <p>
-          Nano JSX provides a fancy <b>Link Component</b> for prefetching pages.
-        </p>
-        <pre><code id="Link" class="language-tsx">loading...</code></pre>
+        <h2>Todo List</h2>
+        <pre><code id="todoList" class="language-tsx">loading...</code></pre>
 
-        <h2>&lt;Img /&gt;</h2>
-        <p>
-          Lazy Loading Images. You should add a height and width if possible.
-        </p>
-        <pre><code id="Img" class="language-tsx">loading...</code></pre>
+        <h2>Fetch Data</h2>
+        <p>Fetch data inside didMount().</p>
+        <pre><code id="fetch" class="language-tsx">loading...</code></pre>
 
-        <h2>&lt;Visible /&gt;</h2>
-        <p>
-          This children of Visible will only be rendered and added to the dom,
-          if they are visible. This is useful, for example, for a comment
-          section. The root elements of Visible needs to be DOM element or a
-          Fragment with at least one DOM node as direct child.
-        </p>
-        <pre><code id="Visible" class="language-tsx">loading...</code></pre>
+        <h2>Store</h2>
+        <p>Use an external store, to store your application's state.</p>
+        <pre><code id="store" class="language-tsx">loading...</code></pre>
 
-        <h2>&lt;Helmet /&gt;</h2>
-        <p>
-          Works just like react-helmet. Works client-side and SSR.
-        </p>
-        <pre><code id="Helmet" class="language-tsx">loading...</code></pre>
+        <h2>SSR</h2>
+        <p>SSR example with the built-in Helmet component.</p>
+        <pre><code id="ssr" class="language-tsx">loading...</code></pre>
+
+        <h2>Tagged Template Literals</h2>
+        <p>You can use jsx without any build tools, if you want.</p>
+        <pre><code id="taggedTemplates" class="language-tsx">loading...</code></pre>
       </section>
 
       <footer class="is-full-width has-background-light">
@@ -162,7 +154,7 @@
     <!-- prism scripts -->
     <link rel="stylesheet" href="./css/prism.css?ver=0.0.5" />
     <script src="./js/prism.js?ver=0.0.5"></script>
-    <script src="./js/code-components.js?ver=0.0.5"></script>
+    <script src="./js/code-examples.js?ver=0.0.5"></script>
     <script>
       window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {

@@ -7,43 +7,183 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <meta name="theme-color" content="#ff4e6a" />
-    <title>Nano JSX &bull; Docs</title>
-    <meta name="description" content="Documentation" />
+    <title>Nano JSX &bull; Documentation</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/css/style.css?ver=0.0.5" />
     <link rel="prefetch" href="/" as="document" />
+    <link rel="prefetch" href="/components.html" as="document" />
+    <link rel="prefetch" href="/examples.html" as="document" />
   </head>
   <body>
     <div id="root">
       <header>
         <ul id="home-navigation" class="is-center">
           <li><a href="/">Home</a></li>
+          <li><a href="/components.html">Components</a></li>
+          <li><a href="/examples.html">Examples</a></li>
         </ul>
       </header>
 
+      <script>
+        const code = {
+          npmInstall: `# install nano-jsx
+npm i nano-jsx`,
+          import: `// app.tsx
+
+// import nano-jsx
+import Nano, { Component, Link, more... } from 'nano-jsx'
+
+// create your components
+const App = (props) => <h1>Hello from {props.name}!</h1>
+
+// render the app to the root element
+Nano.render(<App name="Nano" />, document.getElementById('root'))`,
+          bundle: `// index.html
+
+<!-- Nano JSX -->
+<script src="https://unpkg.com/nano-jsx/bundles/nano.slim.min.js"><\/script>
+
+<!-- Use (with build tools (Babel/TypeScript)) -->
+<script>
+  const { render, Component, Link, more... } = nanoJSX
+
+  const App = (props) => <h1>Hello from {props.name}!</h1>
+
+  render(<App name="Nano" />, document.getElementById('root'))
+<\/script>
+
+<!-- Use (without build tools (purse JavaScript)) -->
+<script>
+  const { render, Component, Link, jsx } = nanoJSX
+
+  const App = (props) => jsx\`<h1>Hello from \${props.name}!</h1>\`
+
+  render(jsx\`<\${App} name="Nano" />\`, document.getElementById('root'))
+<\/script>
+    `,
+          props: `import Nano, { Component } from 'nano-jsx'
+
+class Names extends Component {
+  data: any
+
+  async didMount() {
+    const res = (await fetchMock('/api/names')) as any
+
+    if (res) {
+      this.data = res.data
+      this.update()
+    }
+  }
+
+  render() {
+    if (this.data) {
+      return (
+        <ul>
+          {this.data.map((d: any) => {
+            return <li>{d.name}</li>
+          })}
+        </ul>
+      )
+    } else {
+      return <div>...loading</div>
+    }
+  }
+}`,
+          contextAPI: `import Nano from 'nano-jsx'
+
+const MyContext = Nano.createContext('suzanne')
+
+const Child = () => {
+  return (
+    <MyContext.Consumer>
+      {(value: any) => {
+        return <p>{value}</p>
+      }}
+    </MyContext.Consumer>
+  )
+}
+
+const Parent = (props: any) => {
+  return (
+    <MyContext.Provider value={props.name}>
+      <Child />
+    </MyContext.Provider>
+  )
+}
+
+Nano.render(<Parent name="john" />, document.getElementById('root'))
+`,
+          fragment: `import Nano, { Fragment } from 'nano-jsx'
+
+const List = () => (
+  <Fragment>
+    <p>first</p>
+    <p>second</p>
+    <p>third</p>
+  </Fragment>
+)
+`
+        }
+      </script>
+
       <section>
-        <h2>Documentation</h2>
-        <p>There will be more here soon.</p>
-        <h3>Todo List</h3>
-        <pre><code id="todoList" class="language-tsx">loading...</code></pre>
-        <h3>Fetch Data</h3>
-        <p>Fetch data inside didMount().</p>
-        <pre><code id="fetch" class="language-tsx">loading...</code></pre>
-        <h3>Store</h3>
-        <p>Use an external store, to store your application's state.</p>
-        <pre><code id="store" class="language-tsx">loading...</code></pre>
-        <h3>SSR</h3>
-        <p>SSR example with the built-in Helmet component.</p>
-        <pre><code id="ssr" class="language-tsx">loading...</code></pre>
-        <h3>Tagged Template Literals</h3>
-        <p>You can use jsx without any build tools, if you want.</p>
-        <pre><code id="taggedTemplates" class="language-tsx">loading...</code></pre>
+        <h1>Documentation</h1>
+
+        <h2>
+          How
+        </h2>
+        <p>npm</p>
+
+        <pre><code id="npmInstall" class="language-tsx">loading...</code></pre>
+        <pre><code id="import" class="language-tsx">loading...</code></pre>
+
+        <p>bundle</p>
+        <pre><code id="bundle" class="language-tsx">loading...</code></pre>
+
+        <h2>Props</h2>
+        <p>
+          You can simply pass props to children as you are used to in other JSX
+          libraries.
+        </p>
+        <pre><code id="props" class="language-tsx">loading...</code></pre>
+
+        <h2>Lifecycle</h2>
+        <p>
+          If you extend from Component you will have
+          <code class="is-code">willMount()</code>,
+          <code class="is-code">render()</code> and
+          <code class="is-code">didMount()</code>.
+        </p>
+
+        <p>
+          If you use SSR, you should only manipulate the DOM inside
+          <code class="is-code">didMount()</code>, since
+          <code class="is-code">didMount()</code> will not get executed on the
+          server-side.
+        </p>
+
+        <h2>Update/Re-render Component</h2>
+
+        <p>
+          Nano-JSX does never update the component automatically. You have to
+          call update(). On every component you call update(), the root element
+          needs to be a DOM element or a Fragment with at least one DOM node as
+          direct child. Also, there is no this.state, you can simply use any
+          name you want ("data" in the example below).
+        </p>
+
+        <h2>Context API</h2>
+
+        <pre><code id="contextAPI" class="language-tsx">loading...</code></pre>
+
+        <h2>Fragment</h2>
+        <pre><code id="fragment" class="language-tsx">loading...</code></pre>
       </section>
 
       <footer class="is-full-width has-background-light">
         <div class="is-container is-center">
-          <div style="margin-bottom:16px;">
-            <a style="color:black;" href="https://github.com/nanojsx/nano"
+          <div style="margin-bottom: 16px;">
+            <a style="color: black;" href="https://github.com/nanojsx/nano"
               >https://github.com/nanojsx/nano</a
             >
           </div>
@@ -91,7 +231,15 @@
         width="80"
         height="80"
         viewBox="0 0 250 250"
-        style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);"
+        style="
+          fill: #151513;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          border: 0;
+          left: 0;
+          transform: scale(-1, 1);
+        "
         aria-hidden="true"
       >
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -139,7 +287,7 @@
     <!-- prism scripts -->
     <link rel="stylesheet" href="./css/prism.css?ver=0.0.5" />
     <script src="./js/prism.js?ver=0.0.5"></script>
-    <script src="./js/code-docs.js?ver=0.0.5"></script>
+    <!-- <script src="./js/code-docs.js?ver=0.0.5"></script> -->
     <script>
       window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {
