@@ -54,6 +54,27 @@ const code = {
 
 // render an instance of Clock into <body>:
 Nano.render(<Clock />, document.body)`,
+  checkbox: `class Checkbox extends Component {
+  checked = true
+
+  toggle = (e: Event) => {
+    this.checked = !this.checked
+    this.update()
+  }
+
+  render() {
+    const Text = this.checked ? <p>is checked</p> : null
+
+    return (
+      <div>
+        <input id="checkbox" type="checkbox" {...(this.checked ? { checked: true } : {})} onClick={this.toggle} />
+        <Text />
+      </div>
+    )
+  }
+}
+
+Nano.render(<Checkbox />, document.body)`,
   fetch: `import Nano, { Component } from 'nano-jsx'
 
 class Names extends Component {
