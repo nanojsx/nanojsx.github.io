@@ -30,6 +30,30 @@ const code = {
   }
   
   Nano.render(<Todos />, document.getElementById('root'))`,
+  clock: `class Clock extends Component {
+  time = Date.now()
+  timer: number
+
+  didMount() {
+    // update time every second
+    this.timer = setInterval(() => {
+      this.time = Date.now()
+      this.update()
+    }, 1000)
+  }
+
+  didUnmount() {
+    clearInterval(this.timer)
+  }
+
+  render() {
+    let time = new Date(this.time).toLocaleTimeString()
+    return <span>{time}</span>
+  }
+}
+
+// render an instance of Clock into <body>:
+Nano.render(<Clock />, document.body)`,
   fetch: `import Nano, { Component } from 'nano-jsx'
 
 class Names extends Component {
