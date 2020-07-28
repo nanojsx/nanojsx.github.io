@@ -161,7 +161,7 @@
         const styleSwitcher = document.getElementById('code-style-switcher')
         const c = styleSwitcher.children
         for (i = 0; i < c.length; i++) {
-          c[i].addEventListener('click', function () {
+          c[i].addEventListener('click', function() {
             const attr = this.getAttribute('data-tab')
             const tabs = [
               'counterJSX',
@@ -185,27 +185,39 @@
       </script>
 
       <section>
+        <h2 class="has-text-centered">What</h2>
+        <p>
+          Nano JSX is designed to build ultra fast MPAs using JSX. It uses a
+          different approach than other JSX libraries like React, Preact of
+          Inferno. Instead of shipping all script and hydrate the whole app on
+          the client, Nano JSX send and hydrates only the parts that are really
+          needed for the current page/view. Where else, the other libraries
+          often send the scripts for multiple views, on which the user maybe
+          never navigates to.
+        </p>
+        <p>
+          Because Nano JSX is designed to build fast MPAs it does not need a
+          router or state management across multiple views, which reduces bundle
+          size.
+        </p>
+        <p>
+          Isn't it faster to navigate using a SPA? Well, imagine a SPA blog. The
+          navigation is not instantly. The client first has to fetch the content
+          (maybe in a JSON file), before navigation to the next page even though
+          all the script are already loaded. Nano JSX simply fetches (or even
+          pre-fetches) the next page's html markup with all the content in it.
+        </p>
         <h2 class="has-text-centered">Why</h2>
         <p>
-          Well, in the past, I did a lot of websites using Isomorphic React
+          In the past, I did a lot of websites/apps using Isomorphic React
           (Pre-Rendering on the Server and Hydrating on the client). Once the
           website did load all scripts, it was very fast (not so much on mobile
           though). But the scripts where always way too big.
         </p>
         <p>
           Nowadays, I prefer to Pre-Render the JSX on the server and only
-          Hydrate the parts that are really needed. The client now only gets few
-          kilobytes and uses much less CPU.
-        </p>
-        <p>
-          Of course with this approach, the client does not have a router and
-          must thus fetch each new site on navigating to it. But this is not
-          really a problem since the static html is usually very small and we
-          can easily prefetch pages using
-          <code class="is-code">
-            &lt;link rel="prefetch" href="/about.html" as="document"&gt;</code
-          >
-          on page load or on hovering over a link.
+          Hydrate the parts that are really needed. With Nano JSX, the client
+          now only gets few kilobytes and uses much less CPU.
         </p>
       </section>
 
@@ -223,8 +235,8 @@
       <section>
         <h2 class="has-text-centered">Partial Hydration</h2>
         <p>
-          The library by it self is already very small, but in combination with
-          its awesome capabilities, it becomes even faster.
+          The library by it self is already small and fast, but in combination
+          with its awesome capabilities, it becomes even faster.
         </p>
         <p>
           It's designed to be pre-rendered on the server and to then be
