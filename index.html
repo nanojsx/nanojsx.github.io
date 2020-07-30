@@ -161,7 +161,7 @@
         const styleSwitcher = document.getElementById('code-style-switcher')
         const c = styleSwitcher.children
         for (i = 0; i < c.length; i++) {
-          c[i].addEventListener('click', function() {
+          c[i].addEventListener('click', function () {
             const attr = this.getAttribute('data-tab')
             const tabs = [
               'counterJSX',
@@ -288,6 +288,38 @@
           designed for Nano JSX.
         </p>
         <p>Visit <a href="/components.html">Components</a> to learn more.</p>
+      </section>
+
+      <section class="is-full-width">
+        <div class="is-container-big">
+          <h2 class="has-text-centered">Sandbox</h2>
+          <p class="has-text-centered">
+            Modify here or on
+            <a href="https://codepen.io/yandeu/pen/MWKMmbq">codepen.io</a>.
+          </p>
+          <div class="codepen-wrapper">
+            <p
+              class="codepen"
+              data-height="500"
+              data-theme-id="39236"
+              data-default-tab="js,result"
+              data-user="yandeu"
+              data-slug-hash="MWKMmbq"
+              data-editable="true"
+              data-pen-title="Nano JSX Sandbox"
+            ></p>
+          </div>
+          <style>
+            .codepen-wrapper {
+              box-shadow: 4px 4px 20px 6px rgb(0 0 0 / 20%);
+              border-radius: 6px;
+            }
+          </style>
+          <script
+            async
+            src="https://static.codepen.io/assets/embed/ei.js"
+          ></script>
+        </div>
       </section>
 
       <section class="is-full-width has-background-light">
