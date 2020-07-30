@@ -188,22 +188,21 @@
         <h2 class="has-text-centered">What</h2>
         <p>
           Nano JSX is designed to build ultra fast MPAs using JSX. It uses a
-          different approach than other JSX libraries like React, Preact of
-          Inferno. Instead of shipping all script and hydrate the whole app on
-          the client, Nano JSX send and hydrates only the parts that are really
+          different approach than other JSX libraries like React, Preact or
+          Inferno. Instead of shipping all scripts and hydrate the whole app on
+          the client, Nano JSX sends and hydrates only the parts that are really
           needed for the current page/view. Where else, the other libraries
           often send the scripts for multiple views, on which the user maybe
           never navigates to.
         </p>
         <p>
-          Because Nano JSX is designed to build fast MPAs it does not need a
-          router or state management across multiple views, which reduces bundle
-          size.
+          Because Nano JSX is designed to build MPAs it does not need a router
+          or state management across multiple views, which reduces bundle size.
         </p>
         <p>
           Isn't it faster to navigate using a SPA? Well, imagine a SPA blog. The
           navigation is not instantly. The client first has to fetch the content
-          (maybe in a JSON file), before navigation to the next page even though
+          (maybe in a JSON file), before navigating to the next page even though
           all the script are already loaded. Nano JSX simply fetches (or even
           pre-fetches) the next page's html markup with all the content in it.
         </p>
