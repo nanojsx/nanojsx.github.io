@@ -104,6 +104,44 @@ class Names extends Component {
   }
 }
 `,
+  lazyImgFadein: `import Nano, { Img, Helmet } from 'nano-jsx'
+
+// create your component
+const MyLazyImg = (props: any) => {
+  return (
+
+    // add a gray background while the image is loading
+    <div style={{ backgroundColor: '#d4d4d4', height: \`\${props.height}px\` }}>
+      
+      // add some styles to the head
+      <Helmet>
+        <style>{\`
+          .my-lazy-img {
+            opacity: 0;
+            animation: fadein 5s forwards;
+          }
+          @keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+          }
+        \`}</style>
+      </Helmet>
+
+      // load the image
+      <Img
+        onLoad={(e: Event) => {
+          const img = e.target as HTMLImageElement
+          img.classList.add('my-lazy-img')
+        }}
+        {...props}
+      />
+
+    </div>
+  )
+}
+
+// use your component
+<MyLazyImg width="350" height="150" src="https://via.placeholder.com/350x150" />`,
   store: `// import Nano, Component and Store
 import Nano, { Component, Store } from '../index'
 
