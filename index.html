@@ -49,31 +49,45 @@
         </style>
       </header>
 
-      <section>
-        <div class="benefits">
-          <div class="benefit">
-            <h2 class="benefit-title">No Virtual Dom</h2>
-            <p class="benefit-text">
-              Just pure and fast JavaScript rendering.
-            </p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">SSR First Approach</h2>
-            <p class="benefit-text">
-              Designed to be pre-rendered on the server.
-            </p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">Partial Hydration</h2>
-            <p class="benefit-text">
-              Hydrates only the parts you really need.
-            </p>
-          </div>
-          <div class="benefit">
-            <h2 class="benefit-title">Ultra Lightweight</h2>
-            <p class="benefit-text">
-              Generates bundles as small as svelte.
-            </p>
+      <section class="is-full-width">
+        <div class="is-container-big">
+          <div class="benefits">
+            <div class="benefit">
+              <h2 class="benefit-title">No Virtual Dom</h2>
+              <p class="benefit-text">
+                Just pure and fast JavaScript rendering.
+              </p>
+            </div>
+            <div class="benefit">
+              <h2 class="benefit-title">SSR First Approach</h2>
+              <p class="benefit-text">
+                Designed to be pre-rendered on the server.
+              </p>
+            </div>
+            <div class="benefit">
+              <h2 class="benefit-title">Partial Hydration</h2>
+              <p class="benefit-text">
+                Hydrates only the parts you really need.
+              </p>
+            </div>
+            <div class="benefit">
+              <h2 class="benefit-title">Ultra Lightweight</h2>
+              <p class="benefit-text">
+                Generates bundles as small as svelte.
+              </p>
+            </div>
+            <div class="benefit">
+              <h2 class="benefit-title">Node & Deno</h2>
+              <p class="benefit-text">
+                Server-side rendering on node.js and deno.land (soon).
+              </p>
+            </div>
+            <div class="benefit">
+              <h2 class="benefit-title">Clean Code</h2>
+              <p class="benefit-text">
+                Nano JSX does not use any external libraries.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -161,7 +175,7 @@
         const styleSwitcher = document.getElementById('code-style-switcher')
         const c = styleSwitcher.children
         for (i = 0; i < c.length; i++) {
-          c[i].addEventListener('click', function () {
+          c[i].addEventListener('click', function() {
             const attr = this.getAttribute('data-tab')
             const tabs = [
               'counterJSX',
