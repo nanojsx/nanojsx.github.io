@@ -79,13 +79,13 @@
             <div class="benefit">
               <h2 class="benefit-title">Node & Deno</h2>
               <p class="benefit-text">
-                Server-side rendering on node.js and deno.land (soon).
+                Server-side rendering on node and deno.
               </p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">Clean Code</h2>
               <p class="benefit-text">
-                Nano JSX does not use any external libraries.
+                Nano JSX does not depend on any external libraries.
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@
         <div class="is-container-big">
           <div class="code-example code-example-tabs">
             <div class="code-highlight">
-              <div id="code-style-switcher">
+              <div id="code-style-switcher" class="code-switcher">
                 <p data-tab="counterJSX" id="show-jsx" class="is-active">JSX</p>
                 <p data-tab="counterJavaScript" id="show-javascript">
                   JavaScript
@@ -142,13 +142,13 @@
       </section>
 
       <style>
-        #code-style-switcher {
+        .code-switcher {
           background-color: #1a1d2a;
           border-radius: 8px 8px 0px 0px;
           display: inline-flex;
           margin-bottom: -1px;
         }
-        #code-style-switcher p {
+        .code-switcher p {
           font-size: 18px;
           cursor: pointer;
           color: white;
@@ -156,15 +156,15 @@
           margin: 0;
           border-radius: inherit;
         }
-        #code-style-switcher p:hover {
+        .code-switcher p:hover {
           background-color: #0f111b;
         }
-        #code-style-switcher p.is-active {
+        .code-switcher p.is-active {
           background-color: #272a36;
         }
         /* mobile-only */
         @media only screen and (max-width: 420px) {
-          #code-style-switcher p {
+          .code-switcher p {
             font-size: 16px;
             padding: 12px 12px;
           }
@@ -172,30 +172,32 @@
       </style>
 
       <script>
-        const styleSwitcher = document.getElementById('code-style-switcher')
-        const c = styleSwitcher.children
-        for (i = 0; i < c.length; i++) {
-          c[i].addEventListener('click', function() {
-            const attr = this.getAttribute('data-tab')
-            const tabs = [
-              'counterJSX',
-              'counterJavaScript',
-              'counterTaggedTemplates'
-            ]
+        ;(() => {
+          const styleSwitcher = document.getElementById('code-style-switcher')
+          const c = styleSwitcher.children
+          for (i = 0; i < c.length; i++) {
+            c[i].addEventListener('click', function() {
+              const attr = this.getAttribute('data-tab')
+              const tabs = [
+                'counterJSX',
+                'counterJavaScript',
+                'counterTaggedTemplates'
+              ]
 
-            for (i = 0; i < c.length; i++) {
-              c[i].classList.remove('is-active')
-            }
-            this.classList.add('is-active')
+              for (i = 0; i < c.length; i++) {
+                c[i].classList.remove('is-active')
+              }
+              this.classList.add('is-active')
 
-            tabs.forEach(t => {
-              const tab = document.getElementById(t)
-              if (tab.id === attr)
-                tab.parentElement.classList.remove('is-hidden')
-              else tab.parentElement.classList.add('is-hidden')
+              tabs.forEach(t => {
+                const tab = document.getElementById(t)
+                if (tab.id === attr)
+                  tab.parentElement.classList.remove('is-hidden')
+                else tab.parentElement.classList.add('is-hidden')
+              })
             })
-          })
-        }
+          }
+        })()
       </script>
 
       <section>
@@ -237,13 +239,53 @@
       <section class="is-full-width has-background-light">
         <div class="is-container">
           <h2 class="has-text-centered">Server Side Rendering</h2>
-          <div class="code-example">
+          <div class="code-example code-example-tabs">
             <div class="code-highlight">
-              <pre><code id="ssr" class="language-tsx">loading...</code></pre>
+              <div id="code-srr-switcher" class="code-switcher">
+                <p data-tab="nodeSSR" id="show-node" class="is-active">
+                  Node
+                </p>
+                <p data-tab="denoSSR" id="show-deno">
+                  Deno
+                </p>
+              </div>
+              <pre
+                class="has-no-border-radius-top-left has-no-margin-top"
+              ><code id="nodeSSR" class="language-tsx">loading...</code></pre>
+              <pre
+                class="has-no-border-radius-top-left has-no-margin-top is-hidden"
+              ><code id="denoSSR" class="language-tsx ">loading...</code></pre>
             </div>
           </div>
         </div>
       </section>
+
+      <script>
+        ;(() => {
+          const styleSwitcher = document.getElementById('code-srr-switcher')
+          const c = styleSwitcher.children
+          for (i = 0; i < c.length; i++) {
+            console.log('bla')
+            c[i].addEventListener('click', function() {
+              console.log('click')
+              const attr = this.getAttribute('data-tab')
+              const tabs = ['nodeSSR', 'denoSSR']
+
+              for (i = 0; i < c.length; i++) {
+                c[i].classList.remove('is-active')
+              }
+              this.classList.add('is-active')
+
+              tabs.forEach(t => {
+                const tab = document.getElementById(t)
+                if (tab.id === attr)
+                  tab.parentElement.classList.remove('is-hidden')
+                else tab.parentElement.classList.add('is-hidden')
+              })
+            })
+          }
+        })()
+      </script>
 
       <section>
         <h2 class="has-text-centered">Partial Hydration</h2>
@@ -456,7 +498,7 @@
     <script>
       const code = {
         counterJSX: `import Nano, { Component, Fragment } from 'nano-jsx'
-  
+
 class Counter extends Component {
   value = 0
 
@@ -518,7 +560,43 @@ class Counter extends Component {
 }
 
 Nano.render(jsx\`<\${Counter} />\`, document.getElementById('root'))`,
-        ssr: `import Nano, { Img, Helmet } from 'nano-jsx'
+        nodeSSR: `import Nano from 'nano-jsx'
+import { Helmet } from 'nano-jsx'
+
+const App = () => (
+  <div>
+    <Helmet>
+      <title>Nano JSX SSR</title>
+      <meta name="description" content="Server Side Rendered Nano JSX Application" />
+    </Helmet>
+
+    <Helmet footer>
+      \<\script src="/scripts.js">\<\/script>
+    </Helmet>
+
+    <h1>Hello nano!</h1>
+  </div>
+)
+
+const app = Nano.renderSSR(<App />)
+const { body, head, footer } = Helmet.SSR(app)
+
+const html = \`
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    \${head.join('\\n')}
+  </head>
+  <body>
+    \${body}
+    \${footer.join('\\n')}
+  \<\/body>
+</html>
+      `,
+        denoSSR: `import * as Nano from 'https://deno.land/x/nano_jsx@v0.0.11/mod.ts'
+const { Helmet } = Nano
 
 const App = () => (
   <div>
@@ -594,10 +672,10 @@ npm run dev`,
 import App from './App.svelte';
 
 const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
+  target: document.body,
+  props: {
+    name: 'world'
+  }
 });
 
 export default app;
@@ -612,7 +690,7 @@ const App = (props) => (
 )
 
 Nano.render(
-  <App name="world" />, 
+  <App name="world" />,
   document.body
 )
 
