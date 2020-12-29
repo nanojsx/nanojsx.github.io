@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#ff4e6a" />
     <title>Nano JSX &bull; Lightweight 1kB JSX library</title>
     <meta
@@ -22,18 +19,10 @@
     <div id="root">
       <header>
         <div class="is-center">
-          <img
-            id="logo"
-            width="603"
-            height="228"
-            src="/img/logo.svg"
-            alt="nano jsx logo"
-          />
+          <img id="logo" width="603" height="228" src="/img/logo.svg" alt="nano jsx logo" />
         </div>
         <h2 id="subtitle" class="is-center">Lightweight 1kB JSX library</h2>
-        <p id="tags" class="is-center has-color-gray">
-          TypeScript • Ultra Lightweight • SSR First
-        </p>
+        <p id="tags" class="is-center has-color-gray">TypeScript • Ultra Lightweight • SSR First</p>
         <div id="home-navigation" class="is-center">
           <ul>
             <li><a href="/docs.html">Documentation</a></li>
@@ -54,39 +43,27 @@
           <div class="benefits">
             <div class="benefit">
               <h2 class="benefit-title">No Virtual Dom</h2>
-              <p class="benefit-text">
-                Just pure and fast JavaScript rendering.
-              </p>
+              <p class="benefit-text">Just pure and fast JavaScript rendering.</p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">SSR First Approach</h2>
-              <p class="benefit-text">
-                Designed to be pre-rendered on the server.
-              </p>
+              <p class="benefit-text">Designed to be pre-rendered on the server.</p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">Partial Hydration</h2>
-              <p class="benefit-text">
-                Hydrates only the parts you really need.
-              </p>
+              <p class="benefit-text">Hydrates only the parts you really need.</p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">Ultra Lightweight</h2>
-              <p class="benefit-text">
-                Generates bundles as small as svelte.
-              </p>
+              <p class="benefit-text">Generates bundles as small as svelte.</p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">Node & Deno</h2>
-              <p class="benefit-text">
-                Server-side rendering on node and deno.
-              </p>
+              <p class="benefit-text">Server-side rendering on node and deno.</p>
             </div>
             <div class="benefit">
               <h2 class="benefit-title">Clean Code</h2>
-              <p class="benefit-text">
-                Nano JSX does not depend on any external libraries.
-              </p>
+              <p class="benefit-text">Nano JSX does not depend on any external libraries.</p>
             </div>
           </div>
         </div>
@@ -98,12 +75,8 @@
             <div class="code-highlight">
               <div id="code-style-switcher" class="code-switcher">
                 <p data-tab="counterJSX" id="show-jsx" class="is-active">JSX</p>
-                <p data-tab="counterJavaScript" id="show-javascript">
-                  JavaScript
-                </p>
-                <p data-tab="counterTaggedTemplates" id="show-tagged-templates">
-                  Tagged Templates
-                </p>
+                <p data-tab="counterJavaScript" id="show-javascript">JavaScript</p>
+                <p data-tab="counterTaggedTemplates" id="show-tagged-templates">Tagged Templates</p>
               </div>
               <pre
                 class="has-no-border-radius-top-left has-no-margin-top"
@@ -125,13 +98,11 @@
                 let counterValue = 0
                 const valueElement = document.getElementById('counter-value')
 
-                const setValue = newValue => {
+                const setValue = (newValue) => {
                   counterValue += newValue
                   valueElement.innerHTML = `Counter: ${counterValue}`
                 }
-                const buttonI = document
-                  .getElementById('button-increment')
-                  .addEventListener('click', () => setValue(1))
+                const buttonI = document.getElementById('button-increment').addEventListener('click', () => setValue(1))
                 const buttonD = document
                   .getElementById('button-decrement')
                   .addEventListener('click', () => setValue(-1))
@@ -176,23 +147,18 @@
           const styleSwitcher = document.getElementById('code-style-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               const attr = this.getAttribute('data-tab')
-              const tabs = [
-                'counterJSX',
-                'counterJavaScript',
-                'counterTaggedTemplates'
-              ]
+              const tabs = ['counterJSX', 'counterJavaScript', 'counterTaggedTemplates']
 
               for (i = 0; i < c.length; i++) {
                 c[i].classList.remove('is-active')
               }
               this.classList.add('is-active')
 
-              tabs.forEach(t => {
+              tabs.forEach((t) => {
                 const tab = document.getElementById(t)
-                if (tab.id === attr)
-                  tab.parentElement.classList.remove('is-hidden')
+                if (tab.id === attr) tab.parentElement.classList.remove('is-hidden')
                 else tab.parentElement.classList.add('is-hidden')
               })
             })
@@ -203,36 +169,30 @@
       <section>
         <h2 class="has-text-centered">What</h2>
         <p>
-          Nano JSX is designed to build ultra fast MPAs using JSX. It uses a
-          different approach than other JSX libraries like React, Preact or
-          Inferno. Instead of shipping all scripts and hydrate the whole app on
-          the client, Nano JSX sends and hydrates only the parts that are really
-          needed for the current page/view. Where else, the other libraries
-          often send the scripts for multiple views, on which the user maybe
-          never navigates to.
+          Nano JSX is designed to build ultra fast MPAs using JSX. It uses a different approach than other JSX libraries
+          like React, Preact or Inferno. Instead of shipping all scripts and hydrate the whole app on the client, Nano
+          JSX sends and hydrates only the parts that are really needed for the current page/view. Where else, the other
+          libraries often send the scripts for multiple views, on which the user maybe never navigates to.
         </p>
         <p>
-          Because Nano JSX is designed to build MPAs it does not need a router
-          or state management across multiple views, which reduces bundle size.
+          Because Nano JSX is designed to build MPAs it does not need a router or state management across multiple
+          views, which reduces bundle size.
         </p>
         <p>
-          Isn't it faster to navigate using a SPA? Well, imagine a SPA blog. The
-          navigation is not instantly. The client first has to fetch the content
-          (maybe in a JSON file), before navigating to the next page even though
-          all the script are already loaded. Nano JSX simply fetches (or even
-          pre-fetches) the next page's html markup with all the content in it.
+          Isn't it faster to navigate using a SPA? Well, imagine a SPA blog. The navigation is not instantly. The client
+          first has to fetch the content (maybe in a JSON file), before navigating to the next page even though all the
+          script are already loaded. Nano JSX simply fetches (or even pre-fetches) the next page's html markup with all
+          the content in it.
         </p>
         <h2 class="has-text-centered">Why</h2>
         <p>
-          In the past, I did a lot of websites/apps using Isomorphic React
-          (Pre-Rendering on the Server and Hydrating on the client). Once the
-          website did load all scripts, it was very fast (not so much on mobile
-          though). But the scripts where always way too big.
+          In the past, I did a lot of websites/apps using Isomorphic React (Pre-Rendering on the Server and Hydrating on
+          the client). Once the website did load all scripts, it was very fast (not so much on mobile though). But the
+          scripts where always way too big.
         </p>
         <p>
-          Nowadays, I prefer to Pre-Render the JSX on the server and only
-          Hydrate the parts that are really needed. With Nano JSX, the client
-          now only gets few kilobytes and uses much less CPU.
+          Nowadays, I prefer to Pre-Render the JSX on the server and only Hydrate the parts that are really needed. With
+          Nano JSX, the client now only gets few kilobytes and uses much less CPU.
         </p>
       </section>
 
@@ -242,12 +202,8 @@
           <div class="code-example code-example-tabs">
             <div class="code-highlight">
               <div id="code-srr-switcher" class="code-switcher">
-                <p data-tab="nodeSSR" id="show-node" class="is-active">
-                  Node
-                </p>
-                <p data-tab="denoSSR" id="show-deno">
-                  Deno
-                </p>
+                <p data-tab="nodeSSR" id="show-node" class="is-active">Node</p>
+                <p data-tab="denoSSR" id="show-deno">Deno</p>
               </div>
               <pre
                 class="has-no-border-radius-top-left has-no-margin-top"
@@ -266,7 +222,7 @@
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
             console.log('bla')
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               console.log('click')
               const attr = this.getAttribute('data-tab')
               const tabs = ['nodeSSR', 'denoSSR']
@@ -276,10 +232,9 @@
               }
               this.classList.add('is-active')
 
-              tabs.forEach(t => {
+              tabs.forEach((t) => {
                 const tab = document.getElementById(t)
-                if (tab.id === attr)
-                  tab.parentElement.classList.remove('is-hidden')
+                if (tab.id === attr) tab.parentElement.classList.remove('is-hidden')
                 else tab.parentElement.classList.add('is-hidden')
               })
             })
@@ -290,20 +245,16 @@
       <section>
         <h2 class="has-text-centered">Partial Hydration</h2>
         <p>
-          The library by it self is already small and fast, but in combination
-          with its awesome capabilities, it becomes even faster.
+          The library by it self is already small and fast, but in combination with its awesome capabilities, it becomes
+          even faster.
         </p>
         <p>
-          It's designed to be pre-rendered on the server and to then be
-          partially hydrated on the client. The client will therefore have to
-          download and render much less code.
+          It's designed to be pre-rendered on the server and to then be partially hydrated on the client. The client
+          will therefore have to download and render much less code.
         </p>
         <pre><code id="partialHydrationShowcase" class="language-tsx">loading...</code></pre>
         <h3 class="has-text-centered">Lazy Hydration</h3>
-        <p>
-          Not every component needs to be hydrated immediately. Lazy Hydration
-          reduces First Input Delay (FID).
-        </p>
+        <p>Not every component needs to be hydrated immediately. Lazy Hydration reduces First Input Delay (FID).</p>
         <pre><code id="hydrateLazy" class="language-tsx">loading...</code></pre>
       </section>
 
@@ -311,25 +262,17 @@
         <div class="is-container">
           <h2 class="has-text-centered">Svelte vs Nano JSX</h2>
           <p>
-            Although, the simple example below is 0.2kB bigger using nano JSX,
-            once adding more features to your App like Event Handling, Component
-            Lifecycle, Store or SVG support, the nano JSX application will
-            generate a slightly smaller bundle size compared to Svelte.
+            Although, the simple example below is 0.2kB bigger using nano JSX, once adding more features to your App
+            like Event Handling, Component Lifecycle, Store or SVG support, the nano JSX application will generate a
+            slightly smaller bundle size compared to Svelte.
           </p>
-          <p>
-            The same app with preact is 4.7kB, 8.6kB with inferno and 41.7kB
-            with react.
-          </p>
+          <p>The same app with preact is 4.7kB, 8.6kB with inferno and 41.7kB with react.</p>
           <div class="code-example code-side-by-side">
             <div class="code-highlight">
-              <pre
-                class="has-no-margin-top"
-              ><code id="compareSvelte" class="language-tsx">loading...</code></pre>
+              <pre class="has-no-margin-top"><code id="compareSvelte" class="language-tsx">loading...</code></pre>
             </div>
             <div class="code-highlight">
-              <pre
-                class="has-no-margin-top"
-              ><code id="compareNanoJSX" class="language-tsx">loading...</code></pre>
+              <pre class="has-no-margin-top"><code id="compareNanoJSX" class="language-tsx">loading...</code></pre>
             </div>
           </div>
         </div>
@@ -338,10 +281,9 @@
       <section>
         <h2 class="has-text-centered">Built-In Component</h2>
         <p>
-          Nano JSX provides some useful Built-In Component, like Link, Img,
-          Visible and Helmet and hopefully many many more in the future. All
-          Built-In Components are as lightweight as possible and especially
-          designed for Nano JSX.
+          Nano JSX provides some useful Built-In Component, like Link, Img, Visible and Helmet and hopefully many many
+          more in the future. All Built-In Components are as lightweight as possible and especially designed for Nano
+          JSX.
         </p>
         <p>Visit <a href="/components.html">Components</a> to learn more.</p>
       </section>
@@ -371,28 +313,21 @@
               border-radius: 6px;
             }
           </style>
-          <script
-            async
-            src="https://static.codepen.io/assets/embed/ei.js"
-          ></script>
+          <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </div>
       </section>
 
       <section class="is-full-width has-background-light">
         <div class="is-container">
           <h2 class="has-text-centered">Project Template</h2>
-          <pre
-            class="code-fit-width"
-          ><code id="projectTemplate" class="language-console">loading...</code></pre>
+          <pre class="code-fit-width"><code id="projectTemplate" class="language-console">loading...</code></pre>
         </div>
       </section>
 
       <footer class="is-full-width">
         <div class="is-container is-center">
-          <div style="margin-bottom: 16px;">
-            <a style="color: black;" href="https://github.com/nanojsx/nano"
-              >https://github.com/nanojsx/nano</a
-            >
+          <div style="margin-bottom: 16px">
+            <a style="color: black" href="https://github.com/nanojsx/nano">https://github.com/nanojsx/nano</a>
           </div>
           <div>
             <a
@@ -429,31 +364,19 @@
     </div>
 
     <!-- github corner -->
-    <a
-      href="https://github.com/nanojsx/nano"
-      class="github-corner"
-      aria-label="View source on GitHub"
-    >
+    <a href="https://github.com/nanojsx/nano" class="github-corner" aria-label="View source on GitHub">
       <svg
         width="80"
         height="80"
         viewBox="0 0 250 250"
-        style="
-          fill: #151513;
-          color: #fff;
-          position: absolute;
-          top: 0;
-          border: 0;
-          left: 0;
-          transform: scale(-1, 1);
-        "
+        style="fill: #151513; color: #fff; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1)"
         aria-hidden="true"
       >
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
         <path
           d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
           fill="currentColor"
-          style="transform-origin: 130px 106px;"
+          style="transform-origin: 130px 106px"
           class="octo-arm"
         ></path>
         <path
@@ -594,7 +517,7 @@ const html = \`
     \${footer.join('\\n')}
   \<\/body>
 </html>`,
-        denoSSR: `import * as Nano from 'https://deno.land/x/nano_jsx@v0.0.12/mod.ts'
+        denoSSR: `import * as Nano from 'https://deno.land/x/nano_jsx@v0.0.14-dev.0/mod.ts'
 const { Helmet } = Nano
 
 const App = () => (
@@ -703,13 +626,10 @@ Nano.render(
       }
     </script>
     <script>
-      window.addEventListener('load', event => {
+      window.addEventListener('load', (event) => {
         for (const [key, value] of Object.entries(code)) {
           setTimeout(() => {
-            document.getElementById(key).innerHTML = Prism.highlight(
-              value,
-              Prism.languages.tsx
-            )
+            document.getElementById(key).innerHTML = Prism.highlight(value, Prism.languages.tsx)
           }, 0)
         }
       })

@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start": "live-server",
+    "format": "prettier --write \"**/*.html\""
+  }
+}
