@@ -88,6 +88,107 @@ class Names extends Component {
     }
   }
 }`,
+          state: `import Nano, { Component } from 'nano-jsx'
+import { useState, getState, setState } from 'nano-jsx/lib/hooks/useState'
+
+const MyComponent = () => {
+  // every state needs an unique id
+  const id = 'some-state'
+  // You can use useState()...
+  const [value, setValue] = useState(100, id)
+  // ...or simply use getState() and setState().
+  const value = getState(id)
+  setState(id, newValue)
+
+  return <p>{value}</p> // <p>100</p>
+}
+
+class MyComponent extends Component {
+  constructor(props) {
+    super(props)
+    
+    // set a unique id if you use this component more than 
+    // once across your app and it is using a state
+    this.id = 'MyComponent'
+
+    // this state now has the id 'MyComponent' and can be accessed
+    // by any other component using that id and the useState() hook
+    this.state = { name: 'Doe' }
+
+    // you could of course just add a simple property like "value",
+    // but it will not persist after re-mounting the component.
+    // If your component does never re-mount, you can safely do it.
+    this.value = { name: 'Doe' }
+  }
+
+
+  didMount() {
+    // access this component's state
+    console.log(this.state) // { name: 'Doe' }
+    
+    // set true as second parameter, if you want to trigger a re-render
+    this.setState({ name: 'John Doe' }, true) 
+
+    // access the state from the functional component above using its id
+    const value = getState('some-state') // { number: 100 }
+    setState('some-state', newValue)
+  }
+
+  render() {
+    return (
+      <div>
+        <p>{this.store.state.name}</p>
+        <p>{getState('some-state').number}</p>
+      </div>
+    ) // <div><p>John Doe</p><p>100</p></div>
+  }
+}`,
+          store: `import Nano, { Component } from 'nano-jsx'
+import { Store } from 'nano-jsx/lib/store'
+
+/**
+ * Create your own Store.
+ * @param defaultState Pass the initial State.
+ * @param name The unique name of the Store (optional).
+ * @param storage Pass 'memory', 'local' or 'session' (optional).
+ */
+const myStore = new Store({}, 'my-store', 'local')
+
+const MyComponent = () => {
+  // you can't subscribe to a store in a functional component,
+  // only read and write to it adjusting the state here,
+  // will trigger the subscription event in class components
+  myStore.state = { number: 100 }
+  // or
+  myStore.setState({ number: 100 })
+
+  // access the store's state
+  console.log(myStore.state) // { number: 100 }
+
+  return <p>{this.store.state.number}</p> // <p>100</p>
+}
+
+class MyComponent extends Component {
+  // use the myStore inside MyComponent
+  store = myStore.use()
+
+  didMount() {
+    // subscribe to store changes
+    this.store.subscribe((newState: any, prevState: any) => {
+      // check if you need to update your component or not
+      if (newState.name !== prevState.name) this.update()
+    })
+  }
+
+  didUnmount() {
+    // cancel the store subscription
+    this.store.cancel()
+  }
+
+  render() {
+    return <p>{this.store.state.number}</p> // <p>100</p>
+  }
+}`,
           contextAPI: `import Nano from 'nano-jsx'
 
 const MyContext = Nano.createContext('suzanne')
@@ -116,9 +217,9 @@ Nano.render(<Parent name="john" />, document.getElementById('root'))
 
 const List = () => (
   <Fragment>
-    <p>first</p>
-    <p>second</p>
-    <p>third</p>
+    <p>first child</p>
+    <p>second child</p>
+    <p>third child</p>
   </Fragment>
 )
 `
@@ -138,24 +239,21 @@ const List = () => (
         <pre><code id="import" class="language-tsx">loading...</code></pre>
         <pre><code id="tsConfig" class="language-tsx">loading...</code></pre>
 
-        <!-- <h3>deno</h3>
-        <pre><code id="denoInstall" class="language-tsx">loading...</code></pre>
-        <pre><code id="denoTsConfig" class="language-tsx">loading...</code></pre> -->
+        <h3>deno</h3>
+        <p>
+          Get it from <a href="https://deno.land/x/nano_jsx">deno.land/x/nano_jsx</a> and have a look at the
+          <a href="https://github.com/nanojsx/nano-jsx-deno-example">deno example</a>.
+        </p>
 
         <h3>bundle (with Tagged Templates)</h3>
         <pre><code id="bundle" class="language-tsx">loading...</code></pre>
-
-        <h2>Props</h2>
-        <p>You can simply pass props to children as you are used to in other JSX libraries.</p>
-        <pre><code id="props" class="language-tsx">loading...</code></pre>
 
         <h2>Lifecycle</h2>
         <p>
           If you extend from Component you will have
           <code class="is-code">willMount()</code>, <code class="is-code">render()</code> and
-          <code class="is-code">didMount()</code>.
+          <code class="is-code">didMount()</code> and <code class="is-code">didUnmount()</code>.
         </p>
-
         <p>
           If you use SSR, you should only manipulate the DOM inside
           <code class="is-code">didMount()</code>, since <code class="is-code">didMount()</code> will not get executed
@@ -163,12 +261,31 @@ const List = () => (
         </p>
 
         <h2>Update/Re-render Component</h2>
-
         <p>
-          Nano-JSX does never update the component automatically. You have to call update(). On every component you call
-          update(), the root element needs to be a DOM element or a Fragment with at least one DOM node as direct child.
-          Also, there is no this.state, you can simply use any name you want ("data" in the example below).
+          Nano-JSX does never update the component automatically. You have to call
+          <code class="is-code">update()</code>. On every component you call <code class="is-code">update()</code>, the
+          root element needs to be a DOM element or a Fragment with DOM node as first child.
         </p>
+
+        <h2>Props</h2>
+        <p>You can simply pass props to children as you are used to in other JSX libraries.</p>
+        <pre><code id="props" class="language-tsx">loading...</code></pre>
+
+        <h2>State and Store</h2>
+        <ul>
+          <li style="list-style: inside">Store is reactive, State isn't.</li>
+          <li style="list-style: inside">
+            You can access every State and Store from any component (functional and class).
+          </li>
+          <li style="list-style: inside">Store can be persisted in localStorage and sessionStorage.</li>
+          <li style="list-style: inside">Store needs to be unsubscribed in didUnmount().</li>
+        </ul>
+
+        <h3>State</h3>
+        <pre><code id="state" class="language-tsx">loading...</code></pre>
+
+        <h3>Store</h3>
+        <pre><code id="store" class="language-tsx">loading...</code></pre>
 
         <h2>Context API</h2>
 
