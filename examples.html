@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#ff4e6a" />
     <title>Nano JSX &bull; Examples</title>
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/css/style.css?ver=0.0.5" />
+    <link rel="stylesheet" href="/css/style.css?ver=0.0.6" />
     <link rel="prefetch" href="/" as="document" />
     <link rel="prefetch" href="/docs.html" as="document" />
     <link rel="prefetch" href="/components.html" as="document" />
@@ -14,11 +14,14 @@
   <body>
     <div id="root">
       <header>
-        <ul id="home-navigation" class="is-center">
-          <li><a href="/">Home</a></li>
-          <li><a href="/docs.html">Documentation</a></li>
-          <li><a href="/components.html">Components</a></li>
-        </ul>
+        <div id="home-navigation" class="-center">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/docs.html">Documentation</a></li>
+            <li><a href="/components.html">Components</a></li>
+            <li><a href="/examples.html">Examples</a></li>
+          </ul>
+        </div>
       </header>
 
       <section>
@@ -149,7 +152,7 @@
     <script src="./js/prism.js?ver=0.0.5"></script>
     <script src="./js/code-examples.js?ver=0.0.5"></script>
     <script>
-      window.addEventListener('load', (event) => {
+      window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {
           setTimeout(() => {
             document.getElementById(key).innerHTML = Prism.highlight(value, Prism.languages.tsx)

@@ -25,7 +25,10 @@ header #subtitle {
   font-size: 36px;
 }
 
-header,
+header {
+  padding: 3.6em 0 1.8em 0;
+}
+
 section,
 footer {
   padding: 3.6em 0;
@@ -57,7 +60,9 @@ h3 {
   font-size: 26px;
 }
 
-p {
+p,
+a,
+li {
   font-size: 20px;
   line-height: 1.4em;
 }
@@ -65,7 +70,6 @@ p {
 a {
   text-decoration: none;
   color: #ff4e6a;
-  font-size: 20px;
 }
 
 ul,
@@ -77,9 +81,21 @@ li {
   list-style: none;
 }
 
+.dot-list li {
+  list-style: inside;
+}
+
 #root {
   max-width: 800px;
   margin: 0 auto;
+}
+
+#home-navigation {
+}
+
+#home-navigation ul li {
+  display: inline-block;
+  margin: 0px 6px;
 }
 
 .benefits {
@@ -124,11 +140,7 @@ li {
 .has-background-light {
   /* background-color: #f4f4f4; */
   background: rgb(244, 244, 244);
-  background: linear-gradient(
-    0deg,
-    rgba(238, 238, 238, 1) 0%,
-    rgba(248, 248, 248, 1) 100%
-  );
+  background: linear-gradient(0deg, rgba(238, 238, 238, 1) 0%, rgba(248, 248, 248, 1) 100%);
 }
 
 .has-color-gray {
