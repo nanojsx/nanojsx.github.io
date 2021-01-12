@@ -1,35 +1,35 @@
 const code = {
   todoList: `import Nano, { Component } from 'nano-jsx'
 
-  class Todos extends Component {
-    todos: string[] = []
-  
-    submitHandler(e: Event) {
-      e.preventDefault()
-      const input = document.getElementById('input') as HTMLInputElement
-      this.todos.push(input.value)
-      this.update()
-    }
-  
-    render() {
-      return (
-        <form onSubmit={(e: Event) => this.submitHandler(e)}>
-          <label>
-            <span>Add Todo</span>
-            <input id="input" />
-          </label>
-          <button type="submit">Add</button>
-          <ul>
-            {this.todos.map((todo) => (
-              <li>{todo}</li>
-            ))}
-          </ul>
-        </form>
-      )
-    }
+class Todos extends Component {
+  todos: string[] = []
+
+  submitHandler(e: Event) {
+    e.preventDefault()
+    const input = document.getElementById('input') as HTMLInputElement
+    this.todos.push(input.value)
+    this.update()
   }
-  
-  Nano.render(<Todos />, document.getElementById('root'))`,
+
+  render() {
+    return (
+      <form onSubmit={(e: Event) => this.submitHandler(e)}>
+        <label>
+          <span>Add Todo</span>
+          <input id="input" />
+        </label>
+        <button type="submit">Add</button>
+        <ul>
+          {this.todos.map((todo) => (
+            <li>{todo}</li>
+          ))}
+        </ul>
+      </form>
+    )
+  }
+}
+
+Nano.render(<Todos />, document.getElementById('root'))`,
   clock: `class Clock extends Component {
   time = Date.now()
   timer: number
@@ -75,34 +75,59 @@ Nano.render(<Clock />, document.body)`,
 }
 
 Nano.render(<Checkbox />, document.body)`,
-  fetch: `import Nano, { Component } from 'nano-jsx'
+  fetch: `const fetchNames = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  const json = await res.json()
+  const names = json.map((obj) => obj.name)
+  return names
+}
 
 class Names extends Component {
-  data: any
-
   async didMount() {
-    const res = await fetch('/api/names') as any
-
-    if (res) {
-      this.data = res.data
-      this.update()
-    }
+    const names = await fetchNames()
+    this.update(names)
   }
 
-  render() {
-    if (this.data) {
-      return (
-        <ul>
-          {this.data.map((d: any) => {
-            return <li>{d.name}</li>
-          })}
-        </ul>
-      )
-    } else {
-      return <div>...loading</div>
-    }
+  list(names: string[]) {
+    return (
+      <ul>
+        {names.map((n) => {
+          return <li>{n}</li>
+        })}
+      </ul>
+    )
+  }
+
+  render(names) {
+    if (names) return this.list(names)
+    else return <div>...loading</div>
   }
 }
+`,
+  fetchSuspense: `const fetchNames = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users')
+  const json = await res.json()
+  const names = json.map((obj) => obj.name)
+  return names
+}
+
+const Loading = () => <div>loading...</div>
+
+const List = ({ names }) => (
+  <ul>
+    {names.map((n) => {
+      return <li>{n}</li>
+    })}
+  </ul>
+)
+
+const Names = () => (
+  <div>
+    <Suspense names={fetchNames()} fallback={<Loading />}>
+      <List />
+    </Suspense>
+  </div>
+)
 `,
   lazyImgFadein: `import Nano, { Img, Helmet } from 'nano-jsx'
 
