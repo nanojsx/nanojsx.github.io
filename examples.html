@@ -44,8 +44,11 @@
         <p><b>available soon</b></p>
         <p>
           Fetch data with <code class="is-code">&lt;Suspense /&gt;</code>. In this example Suspense gets the props names
-          as a promise and once resolved, it will pass the results as props to its children. The List Component will
-          therefore have access to names.
+          as a promise (<small>a function that returns a promise</small>,
+          <code class="is-code">() => Promise&lt;any&gt;</code>) and once resolved, it will pass the results as props to
+          its children. The List Component will therefore have access to names.
+          <br />
+          Add <code class="is-code">cache</code> if you want to cache the result of the promise.
         </p>
         <pre><code id="fetchSuspense" class="language-tsx">loading...</code></pre>
 
@@ -161,7 +164,7 @@
     <script src="./js/prism.js?ver=0.0.5"></script>
     <script src="./js/code-examples.js?ver=0.0.5"></script>
     <script>
-      window.addEventListener('load', event => {
+      window.addEventListener('load', (event) => {
         for (const [key, value] of Object.entries(code)) {
           setTimeout(() => {
             document.getElementById(key).innerHTML = Prism.highlight(value, Prism.languages.tsx)

@@ -123,7 +123,7 @@ const List = ({ names }) => (
 
 const Names = () => (
   <div>
-    <Suspense names={fetchNames()} fallback={<Loading />}>
+    <Suspense cache names={fetchNames} fallback={<Loading />}>
       <List />
     </Suspense>
   </div>
