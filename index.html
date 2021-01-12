@@ -163,30 +163,54 @@
       <section>
         <h2 class="has-text-centered">What</h2>
         <p>
-          Nano JSX is designed to build ultra fast MPAs using JSX. It uses a different approach than other JSX libraries
-          like React, Preact or Inferno. Instead of shipping all scripts and hydrate the whole app on the client, Nano
-          JSX sends and hydrates only the parts that are really needed for the current page/view. Where else, the other
-          libraries often send the scripts for multiple views, on which the user maybe never navigates to.
+          Nano JSX is designed to build ultra fast MPAs and SPAs using JSX. It uses a different approach than other JSX
+          libraries like React, Preact or Inferno.
         </p>
         <p>
-          Because Nano JSX is designed to build MPAs it does not need a router or state management across multiple
-          views, which reduces bundle size.
+          Nano JSX is really close to the DOM. There is no Virtual DOM and you can manipulate the DOM as you want. You
+          can even call <code class="is-code">Nano.render()</code> inside a Component, which then renders some JSX code
+          to manage another part of your app.
         </p>
         <p>
-          Isn't it faster to navigate using a SPA? Well, imagine a SPA blog. The navigation is not instantly. The client
-          first has to fetch the content (maybe in a JSON file), before navigating to the next page even though all the
-          script are already loaded. Nano JSX simply fetches (or even pre-fetches) the next page's html markup with all
-          the content in it.
+          You have full control over what the client and what the server renders. All Components are designed to work
+          100% isomorphic.<br />For example, the api of the built-in Router Component works the same way Client-Side and
+          Server-Side.
         </p>
-        <h2 class="has-text-centered">Why</h2>
+        <p>
+          Nano JSX is written in TypeScript. For Node.js it is exported to JavaScript (cjs) and for Deno I use
+          denoify.land.
+        </p>
+        <h2 class="has-text-centered">Why<br /><small>(and how I do it)</small></h2>
         <p>
           In the past, I did a lot of websites/apps using Isomorphic React (Pre-Rendering on the Server and Hydrating on
           the client). Once the website did load all scripts, it was very fast (not so much on mobile though). But the
-          scripts where always way too big.
+          scripts were always way too big.
         </p>
         <p>
           Nowadays, I prefer to Pre-Render the JSX on the server and only Hydrate the parts that are really needed. With
-          Nano JSX, the client now only gets few kilobytes and uses much less CPU.
+          Nano JSX, the client now only gets few kilobytes and uses much less CPU. I personally include inline styles to
+          make the first paint as fast as possible (The styles I include are only for the current view). So, the client
+          fetches only two necessary files index.html and bundle.js. The page is visually finished after loading the
+          index.html file and then only fetches few kilobytes of JavaScript with the second request. Ultra fast first
+          contentful paint (FCP) and no render blocking code.
+        </p>
+        <p>
+          Instead of navigating to the next page with a client-side router (which is also possible), I prefetch the
+          pages that the user will most likely navigate to next.
+        </p>
+        <p>
+          For a huge app, I still use client-side React and Redux. But for everything else, like website, blog, online
+          shop small to medium sized apps and even some mobile apps, I now use Nano JSX.
+        </p>
+        <p>
+          Some of you might remember the old days of React when Class Components managed all states and functional
+          Components did only render JSX Elements. That's the approach I like and use. I find it much more clear to read
+          and write.
+        </p>
+        <h2 class="has-text-centered">Goal</h2>
+        <p>
+          The goal is to have a very small and very stable jsx library that can easily be included into any website.
+          Just kind of like jQuery was at the time.
         </p>
       </section>
 

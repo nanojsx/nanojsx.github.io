@@ -189,8 +189,9 @@ li {
 
 .is-code {
   background: #f3f3f3;
-  font-size: 16px;
+  font-size: 18px;
   padding: 4px;
+  border-radius: 2px;
 }
 
 .is-hidden {
