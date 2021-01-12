@@ -81,8 +81,12 @@ li {
   list-style: none;
 }
 
+.dot-list {
+  margin-left: 24px;
+}
+
 .dot-list li {
-  list-style: inside;
+  list-style: disc;
 }
 
 #root {
@@ -90,12 +94,26 @@ li {
   margin: 0 auto;
 }
 
-#home-navigation {
+#home-navigation a:hover,
+#other-navigation a:hover,
+#other-navigation a.active {
+  text-decoration: underline;
 }
 
 #home-navigation ul li {
   display: inline-block;
   margin: 0px 6px;
+}
+
+@media only screen and (min-width: 600px) {
+  #other-navigation {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  #other-navigation ul li {
+    display: inline-block;
+    margin: 0px 6px;
+  }
 }
 
 .benefits {
@@ -171,9 +189,8 @@ li {
 
 .is-code {
   background: #f3f3f3;
-  font-size: 14px;
+  font-size: 16px;
   padding: 4px;
-  border-radius: 2px;
 }
 
 .is-hidden {

@@ -10,7 +10,7 @@
       content="Designed to build ultra fast Multi-Page Apps (MPAs), using isomorphic JavaScript. Written in TypeScript. Server Side first with partial hydration. Perfect for your next PWA. As small as svelte."
     />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/css/style.css?ver=0.0.6" />
+    <link rel="stylesheet" href="/css/style.css?ver=0.0.7" />
     <link rel="prefetch" href="/docs.html" as="document" />
     <link rel="prefetch" href="/components.html" as="document" />
     <link rel="prefetch" href="/examples.html" as="document" />
@@ -141,7 +141,7 @@
           const styleSwitcher = document.getElementById('code-style-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               const attr = this.getAttribute('data-tab')
               const tabs = ['counterJSX', 'counterJavaScript', 'counterTaggedTemplates']
 
@@ -215,7 +215,7 @@
           const styleSwitcher = document.getElementById('code-srr-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               console.log('click')
               const attr = this.getAttribute('data-tab')
               const tabs = ['nodeSSR', 'denoSSR']

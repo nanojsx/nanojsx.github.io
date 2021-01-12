@@ -6,15 +6,18 @@
     <meta name="theme-color" content="#ff4e6a" />
     <title>Nano JSX &bull; Built-In Components</title>
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="stylesheet" href="/css/style.css?ver=0.0.6" />
+    <link rel="stylesheet" href="/css/style.css?ver=0.0.7" />
     <link rel="prefetch" href="/" as="document" />
     <link rel="prefetch" href="/docs.html" as="document" />
     <link rel="prefetch" href="/examples.html" as="document" />
   </head>
   <body>
     <div id="root">
-      <header>
-        <div id="home-navigation" class="-center">
+      <header style="padding-bottom: 0px; margin-bottom: -24px">
+        <div class="is-center">
+          <img id="logo" width="202" height="77" src="/img/logo.svg" alt="nano jsx logo" />
+        </div>
+        <div id="other-navigation" class="is-center">
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/docs.html">Documentation</a></li>
@@ -23,6 +26,16 @@
           </ul>
         </div>
       </header>
+      <script>
+        // underline active navigation element
+        const { pathname } = window.location
+        const list = document.getElementById('other-navigation').children[0].children
+        for (let i = 0; i < list.length; i++) {
+          const a = list[i].children[0]
+          const href = a.getAttribute('href')
+          if (href === pathname) a.classList.add('active')
+        }
+      </script>
 
       <section>
         <h1>Built-In Components</h1>
