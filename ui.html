@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#ff4e6a" />
-    <title>Nano JSX &bull; Examples</title>
+    <title>Nano JSX &bull; Documentation</title>
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="stylesheet" href="/css/style.css?ver=0.0.7" />
     <link rel="prefetch" href="/" as="document" />
-    <link rel="prefetch" href="/docs.html" as="document" />
     <link rel="prefetch" href="/components.html" as="document" />
+    <link rel="prefetch" href="/examples.html" as="document" />
   </head>
   <body>
     <div id="root">
@@ -39,48 +39,17 @@
       </script>
 
       <section>
-        <h1>Examples</h1>
+        <h1>UI Elements</h1>
+        <p>UI Elements are already available but they are not yet finished and there is no documentation yet.</p>
+        <p>Of course the UI Elements work 100% isomorphic and are really lightweight.</p>
 
-        <h2>Todo List</h2>
-        <pre><code id="todoList" class="language-tsx">loading...</code></pre>
-
-        <h2>Clock</h2>
-        <pre><code id="clock" class="language-tsx">loading...</code></pre>
-
-        <h2>Checkbox</h2>
-        <pre><code id="checkbox" class="language-tsx">loading...</code></pre>
-
-        <h2>Fetch Data</h2>
-        <p>Fetch data inside didMount().</p>
-        <pre><code id="fetch" class="language-tsx">loading...</code></pre>
-
-        <h2>Fetch Data (with Suspense)</h2>
-        <p><b>available soon</b></p>
-        <p>
-          Fetch data with <code class="is-code">&lt;Suspense /&gt;</code>. In this example Suspense gets the props names
-          as a promise (<small>a function that returns a promise</small>,
-          <code class="is-code">() => Promise&lt;any&gt;</code>) and once resolved, it will pass the results as props to
-          its children. The List Component will therefore have access to names.
-          <br />
-          Add <code class="is-code">cache</code> if you want to cache the result of the promise.
-        </p>
-        <pre><code id="fetchSuspense" class="language-tsx">loading...</code></pre>
-
-        <h2>Lazy Image Fadein</h2>
-        <p>A simple component that smoothly fades in your lazy loaded images.</p>
-        <pre><code id="lazyImgFadein" class="language-tsx">loading...</code></pre>
-
-        <h2>Store</h2>
-        <p>Use an external store, to store your application's state.</p>
-        <pre><code id="store" class="language-tsx">loading...</code></pre>
-
-        <h2>SSR</h2>
-        <p>SSR example with the built-in Helmet component.</p>
-        <pre><code id="ssr" class="language-tsx">loading...</code></pre>
-
-        <h2>Tagged Template Literals</h2>
-        <p>You can use jsx without any build tools, if you want.</p>
-        <pre><code id="taggedTemplates" class="language-tsx">loading...</code></pre>
+        <h2>Preview</h2>
+        <p>Simple screenshot for preview purpose.</p>
+        <img
+          style="max-width: 400px; max-width: min(400px, 100%); box-sizing: border-box; border: 2px black solid;"
+          src="/img/ui-preview.jpg"
+          alt="UI Elements Preview"
+        />
       </section>
 
       <footer class="is-full-width has-background-light">
@@ -176,7 +145,7 @@
     <!-- prism scripts -->
     <link rel="stylesheet" href="./css/prism.css?ver=0.0.5" />
     <script src="./js/prism.js?ver=0.0.5"></script>
-    <script src="./js/code-examples.js?ver=0.0.5"></script>
+    <script src="/js/code-docs.js"></script>
     <script>
       window.addEventListener('load', event => {
         for (const [key, value] of Object.entries(code)) {
