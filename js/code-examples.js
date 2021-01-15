@@ -104,15 +104,18 @@ class Names extends Component {
   }
 }
 `,
-  fetchSuspense: `const fetchNames = async () => {
+  fetchSuspense: `// fetch a list of names from the server
+const fetchNames = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
   const json = await res.json()
   const names = json.map((obj) => obj.name)
   return names
 }
 
+// loading placeholder
 const Loading = () => <div>loading...</div>
 
+// list component
 const List = ({ names }) => (
   <ul>
     {names.map((n) => {
@@ -121,13 +124,40 @@ const List = ({ names }) => (
   </ul>
 )
 
-const Names = () => (
+// app component
+const App = () => (
   <div>
+    <h2>Names</h2>
     <Suspense cache names={fetchNames} fallback={<Loading />}>
       <List />
     </Suspense>
   </div>
 )
+`, fetchSuspenseIsomorphic: `// app component
+class App extends Component {
+
+  // a empty static method
+  static fetchNames(): any {}
+
+  render() {
+    return (
+      <div>
+        <h2>Names</h2>
+        <Suspense cache names={App.fetchNames() || fetchNames} fallback={<Loading />}>
+          <List />
+        </Suspense>
+      </div>
+    )
+  }
+}
+
+// client-side rendering
+Nano.render(<App />, document.getElementById('root'))
+
+// server-side rendering
+const names = await fetchNames() // prefetch names
+App.fetchNames = () => () => names // overwrite the static method
+Nano.renderSSR(<App />) // render
 `,
   lazyImgFadein: `import Nano, { Img, Helmet } from 'nano-jsx'
 
