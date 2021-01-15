@@ -142,7 +142,7 @@
           const styleSwitcher = document.getElementById('code-style-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function () {
+            c[i].addEventListener('click', function() {
               const attr = this.getAttribute('data-tab')
               const tabs = ['counterJSX', 'counterJavaScript', 'counterTaggedTemplates']
 
@@ -240,7 +240,7 @@
           const styleSwitcher = document.getElementById('code-srr-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function () {
+            c[i].addEventListener('click', function() {
               console.log('click')
               const attr = this.getAttribute('data-tab')
               const tabs = ['nodeSSR', 'denoSSR']
@@ -313,7 +313,11 @@
             Modify here or on
             <a href="https://codepen.io/yandeu/pen/MWKMmbq">codepen.io</a>.
           </p>
-          <div class="codepen-wrapper">
+          <div class="codepen-wrapper" style="position: relative;">
+            <div class="spinner">
+              <div class="double-bounce1"></div>
+              <div class="double-bounce2"></div>
+            </div>
             <p
               class="codepen"
               data-height="550"
@@ -326,6 +330,9 @@
             ></p>
           </div>
           <style>
+            .cp_embed_wrapper {
+              position: relative;
+            }
             .codepen-wrapper {
               min-height: 550px;
               box-shadow: 4px 4px 20px 6px rgb(0 0 0 / 20%);
