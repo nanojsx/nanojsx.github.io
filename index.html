@@ -326,11 +326,11 @@
           </div>
           <style>
             .codepen-wrapper {
+              min-height: 550px;
               box-shadow: 4px 4px 20px 6px rgb(0 0 0 / 20%);
               border-radius: 6px;
             }
           </style>
-          <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
         </div>
       </section>
 
@@ -439,7 +439,6 @@
     </a>
 
     <!-- prism scripts -->
-
     <link rel="stylesheet" href="/css/prism.css?ver=0.0.5" />
     <script src="/js/prism.js?ver=0.0.5"></script>
     <script src="/js/code-home.js"></script>
@@ -451,6 +450,22 @@
           }, 0)
         }
       })
+    </script>
+
+    <!-- codepen scripts (lazy load) -->
+    <script>
+      let observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let script = document.createElement('script')
+            script.src = 'https://static.codepen.io/assets/embed/ei.js'
+            document.head.appendChild(script)
+
+            observer.unobserve(entry.target)
+          }
+        })
+      })
+      observer.observe(document.getElementsByClassName('codepen-wrapper')[0])
     </script>
 
     <!-- github buttons -->
