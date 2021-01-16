@@ -19,7 +19,7 @@
     <div id="root">
       <header>
         <div class="is-center">
-          <img id="logo" width="603" height="228" src="/img/logo.svg" alt="nano jsx logo" />
+          <img id="logo" width="603" height="228" src="/img/logo-compressed.svg" alt="nano jsx logo" />
         </div>
         <h2 id="subtitle" class="is-center">Lightweight 1kB JSX library</h2>
         <p id="tags" class="is-center has-color-gray">TypeScript • Ultra Lightweight • SSR First</p>
@@ -142,7 +142,7 @@
           const styleSwitcher = document.getElementById('code-style-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               const attr = this.getAttribute('data-tab')
               const tabs = ['counterJSX', 'counterJavaScript', 'counterTaggedTemplates']
 
@@ -240,7 +240,7 @@
           const styleSwitcher = document.getElementById('code-srr-switcher')
           const c = styleSwitcher.children
           for (i = 0; i < c.length; i++) {
-            c[i].addEventListener('click', function() {
+            c[i].addEventListener('click', function () {
               console.log('click')
               const attr = this.getAttribute('data-tab')
               const tabs = ['nodeSSR', 'denoSSR']
@@ -313,7 +313,7 @@
             Modify here or on
             <a href="https://codepen.io/yandeu/pen/MWKMmbq">codepen.io</a>.
           </p>
-          <div class="codepen-wrapper" style="position: relative;">
+          <div class="codepen-wrapper" style="position: relative">
             <div class="spinner">
               <div class="double-bounce1"></div>
               <div class="double-bounce2"></div>
