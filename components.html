@@ -40,26 +40,52 @@
 
       <section>
         <h1>Built-In Components</h1>
+        <p>
+          You will find some examples on how to use these component in the
+          <a href="https://nanojsx.github.io/examples.html">examples section</a>.
+        </p>
+        <ul class="dot-list">
+          <li><a href="#helmet">Helmet</a></li>
+          <li><a href="#img">Img</a></li>
+          <li><a href="#router">Router</a></li>
+          <li><a href="#suspense">Suspense </a></li>
+          <li><a href="#link">Link</a></li>
+          <li><a href="#visible">Visible </a></li>
+        </ul>
 
-        <h2>&lt;Link /&gt;</h2>
-        <p>Nano JSX provides a fancy <b>Link Component</b> for prefetching pages.</p>
-        <pre><code id="Link" class="language-tsx">loading...</code></pre>
+        <h2 id="helmet">&lt;Helmet /&gt;</h2>
+        <p>Works just like react-helmet. Works client-side and SSR.</p>
+        <pre><code id="Helmet" class="language-tsx">loading...</code></pre>
 
-        <h2>&lt;Img /&gt;</h2>
+        <h2 id="img">&lt;Img /&gt;</h2>
         <p>Lazy Loading Images. You should add a height and width if possible.</p>
         <pre><code id="Img" class="language-tsx">loading...</code></pre>
 
-        <h2>&lt;Visible /&gt;</h2>
+        <h2 id="router">&lt;Router /&gt;</h2>
+        <p><b>Availabe in the next version</b></p>
+        <p>A isomorphic router is included.</p>
+        <pre><code id="Router" class="language-tsx">loading...</code></pre>
+
+        <h2 id="suspense">&lt;Suspense /&gt;</h2>
+        <p><b>Availabe in the next version</b></p>
+        <p>
+          Use Suspense for async fetching resources from your server. Add <code class="is-code">cache</code> if you want
+          to cache the result of the promise.<br />Check
+          <a href="https://nanojsx.github.io/examples.html">the examples</a> to see it in action.
+        </p>
+        <pre><code id="Suspense" class="language-tsx">loading...</code></pre>
+
+        <h2 id="link">&lt;Link /&gt;</h2>
+        <p>Nano JSX provides a fancy <b>Link Component</b> for prefetching pages.</p>
+        <pre><code id="Link" class="language-tsx">loading...</code></pre>
+
+        <h2 id="visible">&lt;Visible /&gt;</h2>
         <p>
           This children of Visible will only be rendered and added to the dom, if they are visible. This is useful, for
           example, for a comment section. The root elements of Visible needs to be DOM element or a Fragment with at
           least one DOM node as direct child.
         </p>
         <pre><code id="Visible" class="language-tsx">loading...</code></pre>
-
-        <h2>&lt;Helmet /&gt;</h2>
-        <p>Works just like react-helmet. Works client-side and SSR.</p>
-        <pre><code id="Helmet" class="language-tsx">loading...</code></pre>
       </section>
 
       <footer class="is-full-width has-background-light">
