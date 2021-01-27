@@ -96,7 +96,7 @@ const html = \`
     \${footer.join('\\n')}
   \<\/body>
 </html>`,
-  denoSSR: `import * as Nano from 'https://deno.land/x/nano_jsx@v0.0.14/mod.ts'
+  denoSSR: `import * as Nano from 'https://deno.land/x/nano_jsx/mod.ts'
 const { Helmet } = Nano
 
 const App = () => (
