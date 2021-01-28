@@ -91,8 +91,8 @@ Router.to('/another-page')
     // some component
   </Router.Route>
 
-  // :id needs to match the regex /[a-z0-9]{6}/
-  <Router.Route exact path="/:id/details" regex={{ id: /[a-z0-9]{6}/ }}>
+  // :id needs to match the regex /^[a-f0-9]{6}$/
+  <Router.Route exact path="/:id/details" regex={{ id: /^[a-f0-9]{6}$/ }}>
     // some component
   </Router.Route>
 
