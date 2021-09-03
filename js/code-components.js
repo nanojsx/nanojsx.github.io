@@ -154,7 +154,7 @@ renderSSR(<App />, { pathname: '/123456/detail' })`,
 // wait for 150ms before navigating
 // (useful if, for example, you want to fadeOut the content before navigating)
 // (together with "prefetch", your MPA will just look like a SPA ❤️)
-<Link delay="150" href="https://geckosio.github.io/">
+<Link delay={150} href="https://geckosio.github.io/">
   Link to geckos.io
 </Link>`,
   Visible: `import { Visible } from 'nano-jsx/lib/components/visible'
