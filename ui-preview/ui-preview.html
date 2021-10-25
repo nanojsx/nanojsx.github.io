@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../bundles/nano.dev.min.js"></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+          'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+
+      .appBar_container {
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+      }
+    </style>
+    <div id="root"></div>
+
+    <script>
+      const { render, Link, jsx, UI, Component } = nanoJSX
+      const {
+        AppBar,
+        Button,
+        Dialog,
+        Icon,
+        List,
+        ListItem,
+        Menu,
+        Navigation,
+        NavigationAction,
+        Sheet,
+        Snackbar,
+        Tab,
+        Tabs,
+        Toolbar
+      } = UI
+
+      // a reference to the Pages Component
+      let pagesRef
+
+      const Container = props => {
+        return jsx`<div style="min-height: calc(100vh - 64px); border-radius: 18px; background-color: white; padding: 24px 16px 16px;">${props.children}</div>`
+      }
+
+      const names = ['Tayla', 'Beau', 'Nella', 'Britany']
+
+      const Names = props => {
+        return jsx`
+          <${List}>
+            ${names.map(name => {
+              return jsx`<${ListItem}>${name}</${ListItem}>`
+            })}
+          </${List}>`
+      }
+
+      const dialog = new Dialog()
+      const snackbar = new Snackbar()
+      const snacks = [
+        {
+          message: 'Hello Snack!',
+          actions: [{ name: 'Dismiss', color: this.defaultActionColor }],
+          autoHide: true,
+          consecutive: true,
+          offsetY: 56
+        },
+        {
+          message: 'Simple question? With custom colors!',
+          actions: [
+            { name: 'Yes', color: '#7edeff' },
+            { name: 'No', color: '#f261ff' }
+          ],
+          autoHide: false,
+          consecutive: true,
+          offsetY: 56
+        },
+        {
+          message:
+            'A very very long text without any action. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius',
+          actions: [],
+          autoHide: true,
+          consecutive: true,
+          offsetY: 56
+        }
+      ]
+      const sheetLeft = jsx`<${Sheet} mode="left" title="menu" subtitle="(same list of names)">${Names}</${Sheet}>`
+      const sheetBottom = jsx`<${Sheet} mode="bottom" title="menu" subtitle="(same list of names)">${Names}</${Sheet}>`
+
+      const contextMenu = new Menu()
+
+      const dialogClickHandler = () => {
+        dialog.show(
+          {
+            title: 'Hello',
+            body: 'Some text.',
+            actions: [{ name: 'Action 1' }, { name: 'Action 2' }]
+          },
+          event => {
+            console.log(event)
+          }
+        )
+      }
+
+      class Pages extends Component {
+        render(page) {
+          const showHomePage = !page || page === 'home'
+
+          if (!showHomePage) {
+            return jsx`<h2>${page}</h2>`
+          }
+
+          if (showHomePage)
+            return jsx`
+            <div>
+              <!-- Listen for the click event -->
+              <h2 onClick="${() => console.log('click')}">List of names</h2>
+
+              <!-- Render the Names component -->
+              <${Names} />
+
+              <br />
+
+              <${Button} outlined icon="/dev/font-awesome/heart-solid.svg">Button (outlined + icon)</${Button}>
+
+              <br />
+
+              <!-- Use the built-in Link component -->
+              <!-- 
+							<${Link} prefetch="hover" href="https://geckosio.github.io/">
+                <${Button}>External Link (with prefetch)</${Button}>
+              </${Link}> 
+
+              <br />
+              -->
+
+
+              <${Button} onClick=${() => dialogClickHandler()}>Open Dialog</${Button}>
+
+              <br />
+
+              <${Button} onClick=${() => Sheet.show(sheetBottom)}>Sheet Bottom</${Button}>
+
+              <br />
+
+              <${Button} onClick=${() => {
+              const rnd = Math.floor(Math.random() * 3)
+              snackbar.show(snacks[rnd])
+            }}>Snackbar</${Button}>
+            </div>`
+        }
+      }
+
+      const App = () => {
+        return jsx`
+        <${Container}>
+          <${AppBar}>
+            <${Toolbar} actionClick=${() => Sheet.show(sheetLeft)} menu title="Home Page">
+
+              <div class="toolbar_text">Text</div>
+
+              <${Icon}
+                onClick=${e => {
+                  const { pageX: x, pageY: y } = e
+                  contextMenu.open({ position: { x, y }, list: Names })
+                }}
+                class="toolbar_icon"
+                color="white"
+                src="/dev/font-awesome/ellipsis-v-solid.svg" />
+
+              <${Icon} class="toolbar_icon" color="white" src="/dev/font-awesome/heart-solid.svg" />
+
+            </${Toolbar}>
+
+            <${Tabs}>
+              <${Tab}>first</${Tab}>
+              <${Tab}>second</${Tab}>
+              <${Tab}>third</${Tab}>
+            </${Tabs}>
+
+          </${AppBar}>
+
+          <div style="padding: 16px 16px 64px; margin-top: 56px; margin-bottom: 56px;">
+            <!-- save the Pages reference in pagesRef -->
+            <${Pages} ref=${p => (pagesRef = p)}/>
+          </div>
+
+          <!-- call update on the Pages Component and pass the tab it to update/render -->
+          <${Navigation} onClick=${e => pagesRef.update(e.id)} >
+            <${NavigationAction} label="Home"       icon="/dev/font-awesome/home-solid.svg"   active=${true} />
+            <${NavigationAction} label="About"      icon="/dev/font-awesome/user-solid.svg"   active=${false} />
+            <${NavigationAction} label="Favorites"  icon="/dev/font-awesome/heart-solid.svg"  active=${false} />
+         </${Navigation}>
+
+        </${Container}>`
+      }
+
+      render(App, document.getElementById('root'))
+    </script>
+  </body>
+</html>

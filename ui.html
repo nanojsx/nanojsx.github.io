@@ -47,13 +47,67 @@
         <p>Of course the UI Elements work 100% isomorphic and are really lightweight.</p>
 
         <h2>Preview</h2>
-        <p>Simple screenshot for preview purpose.</p>
-        <img
+        <!-- <p>Simple screenshot for preview purpose.</p> -->
+        <!-- <img
           style="max-width: 400px; max-width: min(400px, 100%); box-sizing: border-box; border: 2px black solid"
           src="/img/ui-preview.jpg"
           alt="UI Elements Preview"
-        />
+        /> -->
+        <style>
+          #iframe {
+            margin: -4px;
+            max-width: 400px;
+            max-width: min(400px, calc(100% + 8px));
+            border: 4px black solid;
+            border-top-width: 14px;
+            border-radius: 16px;
+          }
+        </style>
+        <iframe
+          style="margin: -4px; max-width: 400px; max-width: min(400px, calc(100% + 8px))"
+          id="iframe"
+          width="400"
+          height="720"
+        >
+        </iframe>
+        <p>
+          <small>
+            <a href="https://github.com/nanojsx/nanojsx.github.io/blob/master/ui-preview/ui-preview.html">
+              view source code
+            </a>
+          </small>
+        </p>
       </section>
+
+      <script>
+        const main = async () => {
+          const domParser = new DOMParser()
+
+          const html = await (await fetch('/ui-preview/ui-preview.html')).text()
+          const body = domParser.parseFromString(html, 'text/html').querySelector('body')
+
+          const doc = document.getElementById('iframe').contentWindow.document
+          doc.open()
+          doc.write('<script src="/ui-preview/nano.full.dev.min.js"><\/script>')
+
+          body.childNodes.forEach(c => {
+            if (c.nodeType === 1) {
+              const t = c.tagName.toLowerCase()
+              if (t === 'div') doc.write('<div id="root">\</div>')
+              else
+                doc.write(
+                  `<${t}>${c.innerText.replace(
+                    /(src|icon)="\/dev\//gim,
+                    `$1="https://cdn.jsdelivr.net/gh/nanojsx/nano/dev/`
+                  )}</${t}>`
+                )
+            }
+          })
+
+          doc.close()
+        }
+        main()
+      </script>
 
       <footer class="is-full-width has-background-light">
         <div class="is-container is-center">
@@ -146,7 +200,7 @@
     </a>
 
     <!-- prism scripts -->
-    <link rel="stylesheet" href="./css/prism.css?ver=0.0.5" />
+    <!-- <link rel="stylesheet" href="./css/prism.css?ver=0.0.5" />
     <script src="./js/prism.js?ver=0.0.5"></script>
     <script src="/js/code-docs.js"></script>
     <script>
@@ -157,7 +211,7 @@
           }, 0)
         }
       })
-    </script>
+    </script> -->
 
     <!-- github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
