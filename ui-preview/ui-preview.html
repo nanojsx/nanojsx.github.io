@@ -47,6 +47,7 @@
         AppBar,
         Button,
         Dialog,
+        Fab,
         Icon,
         List,
         ListItem,
@@ -207,6 +208,8 @@
             <!-- save the Pages reference in pagesRef -->
             <${Pages} ref=${p => (pagesRef = p)}/>
           </div>
+
+          <${Fab} offsetY=${72}><${Icon} src="/dev/font-awesome/home-solid.svg" color="white" size=${20} /></${Fab} />
 
           <!-- call update on the Pages Component and pass the tab it to update/render -->
           <${Navigation} onClick=${e => pagesRef.update(e.id)} >
