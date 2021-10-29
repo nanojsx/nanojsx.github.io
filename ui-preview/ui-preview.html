@@ -8,6 +8,11 @@
   </head>
   <body>
     <style>
+      /* no overflow in this example */
+      html {
+        overflow: hidden;
+      }
+
       body {
         font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
           'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -16,9 +21,22 @@
         background-color: black;
       }
 
+      /* just the radius for the phone cover in this example */
       .appBar_container {
         border-top-left-radius: 18px;
         border-top-right-radius: 18px;
+      }
+
+      /* TODO(yandeu): should be added to the lib! */
+      .appBar_container .toolbar_container .toolbar_left {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .appBar_container .toolbar_title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     </style>
     <div id="root"></div>
