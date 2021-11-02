@@ -201,5 +201,27 @@ Nano.render(
 
 
 
-// 1.9kB (gzip)`
+// 1.9kB (gzip)`,
+  customElementsMode: `// App.tsx
+  
+class Counter extends Component {
+  value = 0
+
+  changeValue(newValue: number) {
+    this.value += newValue
+    this.update()
+  }
+
+  render() {
+    return (
+      <div>
+        <div>Counter: {this.value}</div>
+        <button onClick={() => this.changeValue(1)}>Increment</button>
+        <button onClick={() => this.changeValue(-1)}>Decrement</button>
+      </div>
+    )
+  }
+}
+
+Nano.defineAsCustomElements(Counter, "nano-counter", [])`
 }
