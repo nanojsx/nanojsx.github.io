@@ -215,7 +215,18 @@ Nano.defineAsCustomElements(
   }
 )
 `,
-customElementsModeHTML: `<body>
+  dangerouslySetInnerHTML: `
+const html = \`<div> your markup</div>\`;
+
+const App = () => {
+  return <div
+    dangerouslySetInnerHTML={{
+      __html: html
+    }}
+  />;
+}
+`,
+  customElementsModeHTML: `<body>
   <h1>Hello Nano JSX customElementsMode</h1>
   <nano-component value='hello'></nano-component>
   <script src='your custom elements script'></script>
