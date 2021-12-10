@@ -2,5 +2,10 @@
   "scripts": {
     "start": "live-server",
     "format": "prettier --write \"**/*.html\""
+  },
+  "devDependencies": {
+    "@yandeu/prettier-config": "^0.0.3",
+    "five-server": "^0.1.2",
+    "prettier": "^2.5.1"
   }
 }
