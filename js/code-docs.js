@@ -199,22 +199,6 @@ const List = () => (
   </Fragment>
 )
 `,
-  customElementsMode: `import Nano from 'nano-jsx'
-import NanoComponent from 'your-own-nano-component'
-
-Nano.defineAsCustomElements(
-  // your Nano Component
-  NanoComponent,
-  // your custom elements name, This is equivalent to customElements.define's first argument.
-  'nano-component',
-  // component's props key
-  ['value'],
-  // optional, customElements option
-  {
-    mode: 'open'
-  }
-)
-`,
   dangerouslySetInnerHTML: `
 const html = \`<div> your markup</div>\`;
 
@@ -226,10 +210,22 @@ const App = () => {
   />;
 }
 `,
+  customElementsMode: `import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
+import { MyComponent } from 'MyComponent'
+
+defineAsCustomElements(
+  // your Component
+  MyComponent,
+  // Your custom elements name. This is equivalent to customElements.define's first argument.
+  'nano-component',
+  // component's public props key
+  ['value'],
+  // optional, customElements option
+  { mode: 'open' }
+)
+`,
   customElementsModeHTML: `<body>
-  <h1>Hello Nano JSX customElementsMode</h1>
   <nano-component value='hello'></nano-component>
-  <script src='your custom elements script'></script>
 </body>
 `
 }
