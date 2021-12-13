@@ -223,22 +223,102 @@ const App = () => {
   />;
 }
 `,
-  customElementsMode: `import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
-import { MyComponent } from 'MyComponent'
+  customElementsMode: `import Nano, { Component } from 'nano-jsx/lib/component'
+import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
 
+/**
+ * Create a customElement from Components or Functional Components.
+ * @param Component name.
+ * @param DOMString customElement name.
+ * @param string[] Public props key(s).
+ * @param mode Shadow DOM mode.
+ */
+class CustomElementCounter extends Component {
+  value = 0
+
+  // some custom CSS from Nano JSX
+  static style = \`
+.code-result {
+  border-radius: 4px;
+  padding: 24px;
+  margin-top: 8px;
+  max-width: 100%;
+  box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
+}
+.code-result div {
+  font-size: 22px;
+}
+.code-result button {
+  cursor: pointer;
+  border: none;
+  background: #ff4e6a;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 18px;
+  margin-top: 16px;
+  outline: none;
+}
+
+.code-result button:first-of-type {
+  margin-right: 10px;
+}
+\`
+  changeValue(newValue: number) {
+    this.value += newValue
+    this.update()
+  }
+
+  render() {
+    return (
+      <div class="code-result">
+        <div id="counter-value">Counter: {this.value}</div>
+        <button id="button-increment" onClick={() => this.changeValue(1)}>
+          Increment
+        </button>
+        <button id="button-decrement" onClick={() => this.changeValue(-1)}>
+          Decrement
+        </button>
+        <style>
+          {CustomElementCounter.style}
+        </style>
+      </div>
+    )
+  }
+}
+
+// define your customElement
 defineAsCustomElements(
-  // your Component
-  MyComponent,
-  // Your custom elements name. This is equivalent to customElements.define's first argument.
-  'nano-component',
-  // component's public props key
+  // your Nano Component name
+  CustomElementCounter,
+  // your customElements name
+  // this is equivalent to CustomElementCounter.define's first argument
+  'custom-element-counter',
+  // optional Component's props key or multiple keys
+  // use [] when not assigning keys
   ['value'],
-  // optional, customElements option
+  // optional attach a shadow DOM mode to a custom element: open / closed
+  // more info:
+  // https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
   { mode: 'open' }
 )
+
+// create your App and include your customElement
+const App = () => (
+  <div id="content">
+    <h1>Nano JSX customElement!</h1>
+    <custom-element-counter></custom-element-counter>
+  </div>
+)
+
+// render the App
+Nano.render(<App />, document.getElementById('root'))
 `,
-  customElementsModeHTML: `<body>
-  <nano-component value='hello'></nano-component>
+  customElementsModeHTML: `// optional split up your customElement into a single file
+// and include it inside a Component or page with a script tag
+<body>
+  <custom-element-counter></custom-element-counter>
+  <script src="webcomponents/custom-element-counter.js"></script>
 </body>
 `
 }
