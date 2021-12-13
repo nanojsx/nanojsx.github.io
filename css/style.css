@@ -336,7 +336,3 @@ pre[class*='language-'] {
     -webkit-transform: scale(1);
   }
 }
-
-footer #discord-widget {
-  height: 28px;
-}
