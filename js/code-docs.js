@@ -165,25 +165,38 @@ class MyComponent extends Component {
     return <p>{this.store.state.number}</p> // <p>100</p>
   }
 }`,
-  contextAPI: `import Nano from 'nano-jsx'
+  contextAPI: `import Nano, { createContext, useContext } from 'nano-jsx'
 
-const MyContext = Nano.createContext('suzanne')
+/**
+ * Create your own Context to provide data to Components or Functional Components.
+ * @param defaultValue Pass the initial Value.
+ */
+const MyNameContext = createContext('suzanne')
 
+// Context can be consumend in 2 ways
+// 1. by using the Consumer Component in the render function
 const Child = () => {
   return (
-    <MyContext.Consumer>
+    <MyNameContext.Consumer>
       {(value: any) => {
         return <p>{value}</p>
       }}
-    </MyContext.Consumer>
+    </MyNameContext.Consumer>
   )
+}
+
+// 2. alternatively by using the useContext() hook
+const Child = () => {
+  const value = useContext(MyNameContext)
+  return <p>{value}</p>
 }
 
 const Parent = (props: any) => {
   return (
-    <MyContext.Provider value={props.name}>
+    // to overwrite the default value of the Context use the value prop
+    <MyNameContext.Provider value={props.name}>
       <Child />
-    </MyContext.Provider>
+    </MyNameContext.Provider>
   )
 }
 
