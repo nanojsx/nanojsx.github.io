@@ -1,5 +1,5 @@
 const code = {
-  todoList: `import Nano, { Component } from 'nano-jsx'
+  TodoList: `import Nano, { Component } from 'nano-jsx'
 
 class Todos extends Component {
   todos: string[] = []
@@ -30,7 +30,7 @@ class Todos extends Component {
 }
 
 Nano.render(<Todos />, document.getElementById('root'))`,
-  clock: `class Clock extends Component {
+  Clock: `class Clock extends Component {
   time = Date.now()
   timer: number
 
@@ -54,7 +54,7 @@ Nano.render(<Todos />, document.getElementById('root'))`,
 
 // render an instance of Clock into <body>:
 Nano.render(<Clock />, document.body)`,
-  checkbox: `class Checkbox extends Component {
+  Checkbox: `class Checkbox extends Component {
   checked = true
 
   toggle = (e: Event) => {
@@ -75,7 +75,7 @@ Nano.render(<Clock />, document.body)`,
 }
 
 Nano.render(<Checkbox />, document.body)`,
-  fetch: `const fetchNames = async () => {
+  Fetch: `const fetchNames = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
   const json = await res.json()
   const names = json.map((obj) => obj.name)
@@ -104,7 +104,7 @@ class Names extends Component {
   }
 }
 `,
-  fetchSuspense: `// fetch a list of names from the server
+  FetchSuspense: `// fetch a list of names from the server
 const fetchNames = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users')
   const json = await res.json()
@@ -133,7 +133,7 @@ const App = () => (
     </Suspense>
   </div>
 )
-`, fetchSuspenseIsomorphic: `// app component
+`, FetchSuspenseIsomorphic: `// app component
 class App extends Component {
 
   // a empty static method
@@ -159,7 +159,7 @@ const names = await fetchNames() // prefetch names
 App.fetchNames = () => () => names // overwrite the static method
 Nano.renderSSR(<App />) // render
 `,
-  lazyImgFadein: `import Nano, { Img, Helmet } from 'nano-jsx'
+  LazyImgFadein: `import Nano, { Img, Helmet } from 'nano-jsx'
 
 // create your component
 const MyLazyImg = (props: any) => {
@@ -197,7 +197,7 @@ const MyLazyImg = (props: any) => {
 
 // use your component
 <MyLazyImg width="350" height="150" src="https://via.placeholder.com/350x150" />`,
-  store: `// import Nano, Component and Store
+  Store: `// import Nano, Component and Store
 import Nano, { Component, Store } from '../index'
 
 // initialize the store with a default value
@@ -246,7 +246,7 @@ class App extends Component {
 }
 
 Nano.render(<App />, document.getElementById('root'))`,
-  ssr: `// server.tsx
+  Ssr: `// server.tsx
 import Nano, { Img, Helmet } from 'nano-jsx'
 
 const App = () => {
@@ -285,7 +285,7 @@ const html = \`
 \`
 
 // now send the html to the client`,
-  taggedTemplates: `<script>
+  TaggedTemplates: `<script>
   const { render, jsx, Link } = nanoJSX
 
   const names = ['joe', 'suzanne']
