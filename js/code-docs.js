@@ -212,17 +212,14 @@ const List = () => (
   </Fragment>
 )
 `,
-  dangerouslySetInnerHTML: `
-const html = \`<div> your markup</div>\`;
+  dangerouslySetInnerHTML: `const html = \`<div>your markup</div>\`;
 
 const App = () => {
-  return <div
-    dangerouslySetInnerHTML={{
-      __html: html
-    }}
-  />;
-}
-`,
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}`,
+  dangerouslySetInnerHTML2: `const App = () => {
+  return <div innerHTML={{ __dangerousHtml: html }} />;
+}`,
   customElementsMode: `import Nano, { Component } from 'nano-jsx/lib/component'
 import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
 
