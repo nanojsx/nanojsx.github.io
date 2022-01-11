@@ -97,6 +97,14 @@
         <ul class="dot-list">
           <li><code class="is-code">didUnmount()</code></li>
         </ul>
+
+        <div class="alert-notice">
+          <p><strong>Note:</strong></p>
+          <p>
+            <code class="is-code">didUnmount()</code> will only be called once the node has been detached from the DOM.
+          </p>
+        </div>
+
         <h3>Server Side (SSR)</h3>
         <p>
           If you use SSR, you should only manipulate the DOM inside
