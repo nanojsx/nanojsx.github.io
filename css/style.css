@@ -289,6 +289,17 @@ pre[class*='language-'] {
   margin: 0 auto !important;
 }
 
+.alert-notice {
+  border-left: 5px solid #FFC200;
+  padding: 10px 20px;
+  background-color: #FFF3CD;
+  color: #000;
+}
+
+.alert-notice p, .alert-notice code.is-code {
+  font-size: 16px;
+}
+
 /* https://tobiasahlin.com/spinkit/ (with modifications) */
 .spinner {
   height: 100px;
