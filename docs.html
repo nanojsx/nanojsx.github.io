@@ -63,17 +63,59 @@
         <h3>bundle (with Tagged Templates)</h3>
         <pre><code id="bundle" class="language-tsx">loading...</code></pre>
 
-        <h2>Lifecycle</h2>
+        <h2>Component Lifecycle</h2>
+        <h3>Mounting</h3>
+        <p>These methods are called in the following order when a class Component is created and rendered:</p>
+        <ul class="dot-list">
+          <li><code class="is-code">constructor()</code></li>
+          <li><code class="is-code">willMount()</code></li>
+          <li><code class="is-code">render()</code></li>
+          <li><code class="is-code">didMount()</code></li>
+        </ul>
+
+        <div class="alert-notice">
+          <p><strong>Note:</strong></p>
+          <p>
+            To make use of a <code class="is-code">state</code> on initial load, set the state inside the
+            <code class="is-code">constructor()</code>.
+          </p>
+        </div>
+
+        <h3>Updating</h3>
         <p>
-          If you extend from Component you will have
-          <code class="is-code">willMount()</code>, <code class="is-code">render()</code> and
-          <code class="is-code">didMount()</code> and <code class="is-code">didUnmount()</code>.
+          When calling <code class="is-code">this.update()</code> on a class Component, these methods are called in the
+          following order:
         </p>
+        <ul class="dot-list">
+          <li><code class="is-code">willUpdate()</code></li>
+          <li><code class="is-code">render()</code></li>
+          <li><code class="is-code">didUpdate()</code></li>
+        </ul>
+
+        <h3>Unmounting</h3>
+        <p>This method is called when a class Component is unmounted:</p>
+        <ul class="dot-list">
+          <li><code class="is-code">didUnmount()</code></li>
+        </ul>
+
+        <div class="alert-notice">
+          <p><strong>Note:</strong></p>
+          <p>
+            <code class="is-code">didUnmount()</code> will only be called once the node has been detached from the DOM.
+          </p>
+        </div>
+
+        <h3>Server Side (SSR)</h3>
         <p>
           If you use SSR, you should only manipulate the DOM inside
           <code class="is-code">didMount()</code>, since <code class="is-code">didMount()</code> will not get executed
           on the server-side.
         </p>
+
+        <div class="alert-notice">
+          <p><strong>Note:</strong></p>
+          <p>Since v0.0.27 <code class="is-code">willMount()</code> will be ignored in SSR.</p>
+        </div>
 
         <h2>Update/Re-render Component</h2>
         <p>
