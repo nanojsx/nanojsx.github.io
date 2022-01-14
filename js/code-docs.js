@@ -36,6 +36,53 @@ Nano.render(<App name="Nano" />, document.getElementById('root'))`,
   render(jsx\`<\${App} name="Nano" />\`, document.getElementById('root'))
 <\/script>
     `,
+  updateComponents: `import Nano, { Component } from 'nano-jsx'
+
+class Child extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { name: 'John' } // will loose state on update/re-render
+    this.initState = { name: 'John' } // will be kept as global state
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.updateParent}>
+          Update Parent Component
+        </button>
+      </div>
+    )
+  }
+}
+
+class App extends Component {
+  _childref
+
+  handleSelfUpdate = () => {
+    this.update()
+  }
+
+  handleChildUpdate = () => {
+    this._childref.update()
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleChildUpdate}>
+          Update Child Component
+        </button>
+        <Child
+          updateParent={this.handleSelfUpdate}
+          ref={(el) => (this._childref = el)}
+        />
+      </div>
+    )
+  }
+}
+
+Nano.render(<App />, document.getElementById('root'))`,
   props: `import Nano, { Component } from 'nano-jsx'
 
 class Names extends Component {
