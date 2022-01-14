@@ -77,7 +77,8 @@
           <p><strong>Note:</strong></p>
           <p>
             To make use of a <code class="is-code">state</code> on initial load, set the state inside the
-            <code class="is-code">constructor()</code>.
+            <code class="is-code">constructor()</code>. To keep the state of a Component while updating, use
+            <code class="is-code">initState()</code> when initalizing.
           </p>
         </div>
 
@@ -117,15 +118,47 @@
           <p>Since v0.0.27 <code class="is-code">willMount()</code> will be ignored in SSR.</p>
         </div>
 
-        <h2>Update/Re-render Component</h2>
+        <h2>Update/Re-render class Components</h2>
         <p>
-          Nano JSX does never update a component automatically. You have to call
+          Nano JSX does never update a class Component automatically. You have to call
           <code class="is-code">update()</code> manually. On every component you call
           <code class="is-code">update()</code>, the root element needs to be a DOM element or a Fragment of DOM
           elements.
         </p>
 
-        <h2>Props</h2>
+        <h3>Update child Components</h3>
+        <p>
+          You can call <code class="is-code">update()</code> from parent Components to
+          <code class="is-code">update()</code> its child Components through Callback Refs or directly. Since the parent
+          Component updates, it will then re-mount the child Components.
+        </p>
+
+        <h3>Update parent Components from childs</h3>
+        <p>
+          You can call <code class="is-code">update()</code> from child Components, to
+          <code class="is-code">update()</code> its parent Components. For more info, check the
+          <a href="#update-components-example">update Components example</a>.
+        </p>
+
+        <div class="alert-notice">
+          <p><strong>Note:</strong></p>
+          <p>
+            To keep the state of a Component while updating, use <code class="is-code">initState()</code> not
+            <code class="is-code">setState()</code> when initalizing the state.
+          </p>
+        </div>
+
+        <h3>Provide/Render dynamic content on update</h3>
+        <p>
+          The class Component <code class="is-code">update(update?: any)</code> method can receive an optional first
+          argument, which can be typeof any. When provided it will be passed as parameter to the Components
+          <code class="is-code">render(param)</code> function and can be accessed inside it.
+        </p>
+
+        <h3 id="update-components-example">Update Components example</h3>
+        <pre><code id="updateComponents" class="language-tsx">loading...</code></pre>
+
+        <h2>Component Props</h2>
         <p>You can simply pass props to children as you are used to in other JSX libraries.</p>
         <pre><code id="props" class="language-tsx">loading...</code></pre>
 
