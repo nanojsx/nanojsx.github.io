@@ -76,9 +76,12 @@
         <div class="alert-notice">
           <p><strong>Note:</strong></p>
           <p>
-            To make use of a <code class="is-code">state</code> on initial load, set the state inside the
-            <code class="is-code">constructor()</code>. To keep the state of a Component while updating, use
-            <code class="is-code">initState()</code> when initalizing.
+            To keep the state of a Component while updating, use <code class="is-code">initState()</code> instead of
+            <code class="is-code">setState()</code> when initalizing.
+          </p>
+          <p>
+            You can initalize the state inside the <code class="is-code">constructor()</code>, or if the initialState
+            should be, for example, the result of a fetch inside the <code class="is-code">didMount()</code> method.
           </p>
         </div>
 
