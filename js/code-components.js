@@ -8,6 +8,9 @@ const code = {
   {/* body attributes */}
   <body class="root" />
 
+  {/* additional body attrbutes */}
+  <body class="main" id="id" />
+
   {/* title element */}
   <title>My Plain Title or {dynamic} title</title>
 

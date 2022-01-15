@@ -247,12 +247,17 @@ class App extends Component {
 
 Nano.render(<App />, document.getElementById('root'))`,
   Ssr: `// server.tsx
-import Nano, { Img, Helmet } from 'nano-jsx'
+import Nano, { Helmet } from 'nano-jsx'
 
 const App = () => {
   return (
     <div>
       <Helmet>
+        <html lang="en" amp />
+
+        <body class="root" />
+        <body class="main" id="id" />
+
         <title>Nano JSX Helmet SSR</title>
         <meta name="description" content="Nano-JSX application" />
       </Helmet>
@@ -267,22 +272,24 @@ const App = () => {
 }
 
 const app = Nano.renderSSR(<App />)
-const { body, head, footer } = Helmet.SSR(app)
+const { body, head, footer, attributes } = Helmet.SSR(app)
 
 const html = \`
 <!DOCTYPE html>
-<html lang="en">
+<html \${attributes.html.toString()}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     \${head.join('\\n')}
   </head>
-  <body>
+  <body \${attributes.body.toString()}>
     \${body}
     \${footer.join('\\n')}
   </body>
 </html>
 \`
+// access \`attributes.body\` as [Map]: { 'class' => 'main', 'id' => 'id' }
+// or with \`attributes.body.toString())\`: class="main" id="id"
 
 // now send the html to the client`,
   TaggedTemplates: `<script>

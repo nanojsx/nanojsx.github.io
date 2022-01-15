@@ -68,6 +68,7 @@ import { Helmet } from 'nano-jsx'
 const App = () => (
   <div>
     <Helmet>
+      <html lang="en" amp />
       <title>Nano JSX SSR</title>
       <meta name="description" content="Server Side Rendered Nano JSX Application" />
     </Helmet>
@@ -81,17 +82,17 @@ const App = () => (
 )
 
 const app = Nano.renderSSR(<App />)
-const { body, head, footer } = Helmet.SSR(app)
+const { body, head, footer, attributes } = Helmet.SSR(app)
 
 const html = \`
 <!DOCTYPE html>
-<html lang="en">
+<html \${attributes.html.toString()}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     \${head.join('\\n')}
   </head>
-  <body>
+  <body \${attributes.body.toString()}>
     \${body}
     \${footer.join('\\n')}
   \<\/body>
@@ -102,6 +103,7 @@ const { Helmet } = Nano
 const App = () => (
   <div>
     <Helmet>
+      <html lang="en" amp />
       <title>Nano JSX SSR</title>
       <meta name="description" content="Server Side Rendered Nano JSX Application" />
     </Helmet>
@@ -115,17 +117,17 @@ const App = () => (
 )
 
 const app = Nano.renderSSR(<App />)
-const { body, head, footer } = Helmet.SSR(app)
+const { body, head, footer, attributes } = Helmet.SSR(app)
 
 const html = \`
 <!DOCTYPE html>
-<html lang="en">
+<html \${attributes.html.toString()}>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     \${head.join('\\n')}
   </head>
-  <body>
+  <body \${attributes.body.toString()}>
     \${body}
     \${footer.join('\\n')}
   \<\/body>
