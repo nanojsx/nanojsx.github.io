@@ -201,6 +201,67 @@
         <p>A more readable alternative style:</p>
         <pre><code id="dangerouslySetInnerHTML2" class="language-tsx">loading...</code></pre>
 
+        <h2>Styled Components</h2>
+        <h3>Nano JSX withStyles</h3>
+        <p>
+          Nano JSX offers multiple ways to handle CSS-Styling for your Components using
+          <code class="is-code">withStyles()</code>:
+        </p>
+
+        <ul class="dot-list">
+          <li>
+            Define styles as <code class="is-code">string</code>, <code class="is-code">function</code> or
+            <code class="is-code">object</code> individually inside your Component
+          </li>
+          <li>Define styles inside a Style-Component and import them to your Component</li>
+          <li>
+            Define styles in <code class="is-code">.css</code> or <code class="is-code">.scss</code> files and import
+            those
+          </li>
+        </ul>
+
+        <p>There are several pros and cons of either using one of the available methods.</p>
+
+        <p>
+          In order to import CSS/Sass/SCSS files in your Components, you will have to update your
+          <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> configuration with the following
+          loaders:
+        </p>
+
+        <ul class="dot-list">
+          <li>
+            <a href="https://github.com/webpack-contrib/css-loader" target="_blank" rel="noopener">css-loader</a> to
+            interpret .css import statements
+          </li>
+          <li>
+            <a href="https://github.com/webpack-contrib/style-loader" target="_blank" rel="noopener">style-loader</a> to
+            inject CSS into the DOM
+          </li>
+          <li>
+            <a href="https://github.com/webpack-contrib/postcss-loader" target="_blank" rel="noopener"
+              >postcss-loader</a
+            >
+            to load and process CSS with PostCSS
+          </li>
+          <li>
+            <a href="https://github.com/webpack-contrib/sass-loader" target="_blank" rel="noopener">sass-loader</a> to
+            load a Sass/SCSS file and compile it to CSS
+          </li>
+        </ul>
+
+        <p>
+          For an example configuration using Webpack and styled Components with Sass/SCSS, install the
+          <a href="https://github.com/nanojsx/template" target="_blank" rel="noopener">Nano JSX Template</a>.
+        </p>
+
+        <h3>Render Components using withStyles</h3>
+        <p>
+          This example demonstrates how to render a functional Component with pre-defined styles using
+          <code class="is-code">withStyles().</code> For a more in depth example, check out the
+          <a href="https://nanojsx.io/examples.html#withstyles">withStyles example</a>.
+        </p>
+        <pre><code id="withStyles" class="language-html">loading...</code></pre>
+
         <h2>CustomElementsMode</h2>
         <p>
           You can easily convert your Components to WebComponents via
