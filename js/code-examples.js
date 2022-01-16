@@ -380,7 +380,7 @@ import { Fragment } from 'nano-jsx/lib/fragment'
 import Navbar from './components/navbar'
 
 const App = () => {
-	const css = \`
+  const css = \`
 body {
 	margin: 0;
 	background-color: #f0f0f0;
