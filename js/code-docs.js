@@ -272,31 +272,32 @@ import { withStyles } from 'nano-jsx/lib/withStyles'
 import { Fragment } from 'nano-jsx/lib/fragment'
 
 const App = () => {
+
   // define CSS-Styles inside a Component
   const css = \`
-body {
-	margin: 0;
-	background-color: #f0f0f0;
-}
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    article {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: 8px;
+      padding: 24px;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
+      text-align: center;
+    }\`
 
-article {
-	max-width: 300px;
-	margin: 0 auto;
-	margin-top: 8px;
-	padding: 24px;
-	border-radius: 4px;
-	background-color: #fff;
-	box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
-	text-align: center;
-}\`
-	// return Component withStyles
-	return withStyles(css)(
-		<Fragment>
-			<main>
-				<article><h1>Hello from Nano JSX!</h1></article>
-			</main>
-		</Fragment>
-	)
+  // return Component withStyles
+  return withStyles(css)(
+    <Fragment>
+      <main>
+        <article><h1>Hello from Nano JSX!</h1></article>
+      </main>
+    </Fragment>
+  )
 }
 
 Nano.render(<App />, document.getElementById('root'))
@@ -316,32 +317,32 @@ class CustomElementCounter extends Component {
 
   // some custom CSS from Nano JSX
   static style = \`
-.code-result {
-  border-radius: 4px;
-  padding: 24px;
-  margin-top: 8px;
-  max-width: 100%;
-  box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
-}
-.code-result div {
-  font-size: 22px;
-}
-.code-result button {
-  cursor: pointer;
-  border: none;
-  background: #ff4e6a;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 4px;
-  font-size: 18px;
-  margin-top: 16px;
-  outline: none;
-}
+    .code-result {
+      border-radius: 4px;
+      padding: 24px;
+      margin-top: 8px;
+      max-width: 100%;
+      box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
+    }
+    .code-result div {
+      font-size: 22px;
+    }
+    .code-result button {
+      cursor: pointer;
+      border: none;
+      background: #ff4e6a;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 18px;
+      margin-top: 16px;
+      outline: none;
+    }
 
-.code-result button:first-of-type {
-  margin-right: 10px;
-}
-\`
+    .code-result button:first-of-type {
+      margin-right: 10px;
+    }\`
+    
   changeValue(newValue: number) {
     this.value += newValue
     this.update()

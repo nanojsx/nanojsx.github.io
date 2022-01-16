@@ -381,32 +381,32 @@ import Navbar from './components/navbar'
 
 const App = () => {
   const css = \`
-body {
-	margin: 0;
-	background-color: #f0f0f0;
-}
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    article {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: 8px;
+      padding: 24px;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
+      text-align: center;
+    }\`
 
-article {
-	max-width: 300px;
-	margin: 0 auto;
-	margin-top: 8px;
-	padding: 24px;
-	border-radius: 4px;
-	background-color: #fff;
-	box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
-	text-align: center;
-}\`
-	// return Component withStyles
-	return withStyles(css)(
-		<Fragment>
-			<header>
-				<Navbar />
-			</header>
-			<main>
-				<article><h1>Hello from Nano JSX!</h1></article>
-			</main>
-		</Fragment>
-	)
+  // return Component withStyles
+  return withStyles(css)(
+    <Fragment>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <article><h1>Hello from Nano JSX!</h1></article>
+      </main>
+    </Fragment>
+  )
 }
 
 Nano.render(<App />, document.getElementById('root'))`,
