@@ -289,14 +289,22 @@ pre[class*='language-'] {
   margin: 0 auto !important;
 }
 
-.alert-notice {
-  border-left: 5px solid #FFC200;
+.alert {
   padding: 10px 20px;
-  background-color: #FFF3CD;
   color: #000;
 }
 
-.alert-notice p, .alert-notice code.is-code {
+.alert-notice {
+  border-left: 5px solid #FFC200;
+  background-color: #FFF3CD;
+}
+
+.alert-info {
+  border-left: 5px solid #15A3E1;
+  background-color: #CCEBF9;
+}
+
+.alert p, .alert code.is-code, .alert a {
   font-size: 16px;
 }
 

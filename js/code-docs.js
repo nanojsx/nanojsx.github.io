@@ -267,6 +267,40 @@ const App = () => {
   dangerouslySetInnerHTML2: `const App = () => {
   return <div innerHTML={{ __dangerousHtml: html }} />;
 }`,
+withStyles: `import { render } from 'nano-jsx/lib/core'
+import { withStyles } from 'nano-jsx/lib/withStyles'
+import { Fragment } from 'nano-jsx/lib/fragment'
+
+const App = () => {
+  // define CSS-Styles inside a Component
+  const css = \`
+body {
+	margin: 0;
+	background-color: #f0f0f0;
+}
+
+article {
+	max-width: 300px;
+	margin: 0 auto;
+	margin-top: 8px;
+	padding: 24px;
+	border-radius: 4px;
+	background-color: #fff;
+	box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
+	text-align: center;
+}\`
+	// return Component withStyles
+	return withStyles(css)(
+		<Fragment>
+			<main>
+				<article><h1>Hello from Nano JSX!</h1></article>
+			</main>
+		</Fragment>
+	)
+}
+
+Nano.render(<App />, document.getElementById('root'))
+`,
   customElementsMode: `import Nano, { Component } from 'nano-jsx/lib/component'
 import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
 
