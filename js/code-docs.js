@@ -288,7 +288,8 @@ const App = () => {
 
 render(<App />, document.getElementById('root'))
 `,
-  customElementsMode: `import Nano, { Component } from 'nano-jsx/lib/component'
+  customElementsMode: `import { h, render } from 'nano-jsx/lib/core'
+import { Component } from 'nano-jsx/lib/component'
 import { defineAsCustomElements } from 'nano-jsx/lib/customElementsMode'
 
 /**
@@ -303,32 +304,12 @@ class CustomElementCounter extends Component {
 
   // some custom CSS from Nano JSX
   static style = \`
-    .code-result {
-      border-radius: 4px;
-      padding: 24px;
-      margin-top: 8px;
-      max-width: 100%;
-      box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
-    }
-    .code-result div {
-      font-size: 22px;
-    }
     .code-result button {
       cursor: pointer;
-      border: none;
-      background: #ff4e6a;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 4px;
-      font-size: 18px;
-      margin-top: 16px;
-      outline: none;
-    }
-
-    .code-result button:first-of-type {
-      margin-right: 10px;
+      margin-right: 4px;
+      padding: 8px 12px;
     }\`
-    
+
   changeValue(newValue: number) {
     this.value += newValue
     this.update()
@@ -344,9 +325,7 @@ class CustomElementCounter extends Component {
         <button id="button-decrement" onClick={() => this.changeValue(-1)}>
           Decrement
         </button>
-        <style>
-          {CustomElementCounter.style}
-        </style>
+        <style>{CustomElementCounter.style}</style>
       </div>
     )
   }
@@ -370,15 +349,14 @@ defineAsCustomElements(
 
 // create your App and include your customElement
 const App = () => (
-  <div id="content">
+  <div id="root">
     <h1>Nano JSX customElement!</h1>
     <custom-element-counter></custom-element-counter>
   </div>
 )
 
 // render the App
-Nano.render(<App />, document.getElementById('root'))
-`,
+render(<App />, document.getElementById('root'))`,
   customElementsModeHTML: `// optional split up your customElement into a single file
 // and include it inside a Component or page with a script tag
 <body>
