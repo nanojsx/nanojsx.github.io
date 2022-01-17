@@ -326,88 +326,57 @@ const html = \`
 
   render(App, document.getElementById('root'))
 </script>`,
-  WithStyles: `// ./components/navbar.tsx
+  WithStyles: `// imports
+import { h, render } from 'nano-jsx/lib/core'
 import { withStyles } from 'nano-jsx/lib/withStyles'
+import { Component } from 'nano-jsx/lib/component'
 
-// define CSS-Styles inside a Component
-// or import styles from a file: \`import styles from './navbar.css'\`
-const css = \`
-#navbar ul {
-  margin: 0;
-  padding: 20px;
-  list-style-type: none;
-  text-align: center;
-  background-color: #fff;
-  margin-bottom: 20px;
+// styles
+const NavbarCSS = \`
+#navbar {
+  display:flex;
+  flex-direction: column;
 }
-
-#navbar ul li {
-  display: inline;
-}
-
-#navbar ul li a {
-  text-decoration: none;
-  padding: .2em 1em;
+#navbar a {
   color: #ff4e6a;
-  background-color: #fff;
-}
-
-#navbar ul li a:hover {
-  text-decoration: underline;
+}\`
+const ComponentCSS = 'h2 { color: red; }'
+const AppCSS = \`
+body {
+  margin: 0;
+  background-color: #f0f0f0;
 }\`
 
+// wrap withStyles() around a functional component
 const Navbar = () => {
   return (
     <div id="navbar">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  )
+}
+const NavbarWithStyles = withStyles(NavbarCSS)(Navbar)
+
+// use it as a decorator for a class component
+@withStyles(ComponentCSS)
+class ClassComponent extends Component {
+  render() {
+    return <h2>ClassComponent using withStyle() decorator</h2>
+  }
+}
+
+const App = () => {
+  // return Component withStyles
+  return withStyles(AppCSS)(
+    <div id="root">
+      <NavbarWithStyles />
+      <ClassComponent />
     </div>
   )
 }
 
-// export the Component withStyles
-export default withStyles(css)(Navbar)
-
-// ./app.tsx
-import { render } from 'nano-jsx/lib/core'
-import { withStyles } from 'nano-jsx/lib/withStyles'
-import { Fragment } from 'nano-jsx/lib/fragment'
-
-// import the styles Component
-import Navbar from './components/navbar'
-
-const App = () => {
-  const css = \`
-    body {
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-    article {
-      max-width: 300px;
-      margin: 0 auto;
-      margin-top: 8px;
-      padding: 24px;
-      border-radius: 4px;
-      background-color: #fff;
-      box-shadow: 4px 4px 20px 6px rgb(123 123 159 / 20%);
-      text-align: center;
-    }\`
-
-  // return Component withStyles
-  return withStyles(css)(
-    <Fragment>
-      <header>
-        <Navbar />
-      </header>
-      <main>
-        <article><h1>Hello from Nano JSX!</h1></article>
-      </main>
-    </Fragment>
-  )
-}
-
-Nano.render(<App />, document.getElementById('root'))`,
+render(<App />, document.getElementById('root'))
+`,
 }

@@ -201,70 +201,27 @@
         <p>A more readable alternative style:</p>
         <pre><code id="dangerouslySetInnerHTML2" class="language-tsx">loading...</code></pre>
 
-        <h2>Styled Components</h2>
-        <h3>Nano JSX withStyles</h3>
-        <p>
-          Nano JSX offers multiple ways to handle CSS-Styling for your Components using
-          <code class="is-code">withStyles()</code>.
-        </p>
-        <ul class="dot-list">
-          <li>You can define styles individually inside your Component</li>
-          <li>Define styles inside a Style-Component and import them to another Component</li>
-          <li>
-            Define styles in <code class="is-code">.css</code> or <code class="is-code">.scss</code> files and import
-            those
-          </li>
-        </ul>
-
-        <p>There are several pros and cons of either using one of the available methods.</p>
+        <h2>withStyles()</h2>
+        <p>Nano JSX offers an optional <code class="is-code">withStyles()</code> HOC (Higher Order Component) to style your Components.</p>
+        <p>You can simply pass your css as a string, or use an appropriate loader, for <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> or similar, to import css or sass/scss files.</p>
         <p>You can pass to <code class="is-code">withStyles()</code> an array of (or separated by a comma):</p>
         <ul class="dot-list">
           <li><code class="is-code">string</code></li>
           <li>object that has <code class="is-code">toString()</code></li>
           <li>function that returns a <code class="is-code">string</code></li>
         </ul>
-
-        <p>
-          In order to import CSS/Sass/SCSS files in your Components, you will have to update your
-          <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> configuration with the following
-          loaders:
-        </p>
-
-        <ul class="dot-list">
-          <li>
-            <a href="https://github.com/webpack-contrib/css-loader" target="_blank" rel="noopener">css-loader</a> to
-            interpret .css import statements
-          </li>
-          <li>
-            <a href="https://github.com/webpack-contrib/style-loader" target="_blank" rel="noopener">style-loader</a> to
-            inject CSS into the DOM
-          </li>
-          <li>
-            <a href="https://github.com/webpack-contrib/postcss-loader" target="_blank" rel="noopener"
-              >postcss-loader</a
-            >
-            to load and process CSS with PostCSS
-          </li>
-          <li>
-            <a href="https://github.com/webpack-contrib/sass-loader" target="_blank" rel="noopener">sass-loader</a> to
-            load a Sass/SCSS file and compile it to CSS
-          </li>
-        </ul>
-
-        <p>There are all of these possibilities, because some style-loaders return different formats.</p>
         <div class="alert alert-info">
           <p><strong>Info:</strong></p>
           <p>
-            For an example configuration using Webpack and styled Components with Sass/SCSS, install the
-            <a href="https://github.com/nanojsx/template" target="_blank" rel="noopener">Nano JSX Template</a>:
+            For an example configuration using Webpack and <code class="is-code">withStyles().</code> with Sass/SCSS, have a look at the
+            <a href="https://github.com/nanojsx/template" target="_blank" rel="noopener">Nano JSX Template</a>
           </p>
-          <p><code class="is-code">npx degit nanojsx/template nano</code></p>
         </div>
 
         <h3>Render Components using withStyles</h3>
         <p>
           This example demonstrates how to render a functional Component with pre-defined styles using
-          <code class="is-code">withStyles().</code> For a more in depth example, check out the
+          <code class="is-code">withStyles()</code>. For a more in depth example, check out the
           <a href="/examples.html">withStyles example</a>.
         </p>
         <pre><code id="withStyles" class="language-html">loading...</code></pre>
