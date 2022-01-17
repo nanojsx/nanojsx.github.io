@@ -41,8 +41,8 @@ Nano.render(<App name="Nano" />, document.getElementById('root'))`,
 class Child extends Component {
   constructor(props) {
     super(props)
-    this.state = { name: 'John' } // will loose state on update/re-render
-    this.initState = { name: 'John' } // will be kept as global state
+    this.initState = { name: 'John' } // will set the state only if it is empty
+    this.state = { name: 'John' } // will overwrite the state
   }
 
   render() {
@@ -116,9 +116,11 @@ import { useState, getState, setState } from 'nano-jsx/lib/hooks/useState'
 
 const MyComponent = () => {
   // every state needs an unique id
-  const id = 'some-state'
+  const id = 'some-state-id'
+  // define your initial state
+  const initState = 100
   // You can use useState()...
-  const [value, setValue] = useState(100, id)
+  const [value, setValue] = useState(initState, id)
   // ...or simply use getState() and setState().
   const value = getState(id)
   setState(id, newValue)
@@ -136,12 +138,10 @@ class MyComponent extends Component {
 
     // this state now has the id 'MyComponent' and can be accessed
     // by any other component using that id and the useState() hook
-    this.state = { name: 'Doe' }
+    this.initState = { name: 'Doe' }
 
-    // you could of course just add a simple property like "value",
-    // but it will not persist after re-mounting the component.
-    // If your component does never re-mount, you can safely do it.
-    this.value = { name: 'Doe' }
+    // NOTE: "this.initState" will only set the state if it is empty;
+    // to overwrite your state at this point, use "this.state"
   }
 
 
@@ -153,15 +153,15 @@ class MyComponent extends Component {
     this.setState({ name: 'John Doe' }, true) 
 
     // access the state from the functional component above using its id
-    const value = getState('some-state') // { number: 100 }
-    setState('some-state', newValue)
+    const value = getState('some-state-id') // { number: 100 }
+    setState('some-state-id', newValue)
   }
 
   render() {
     return (
       <div>
         <p>{this.store.state.name}</p>
-        <p>{getState('some-state').number}</p>
+        <p>{getState('some-state-id').number}</p>
       </div>
     ) // <div><p>John Doe</p><p>100</p></div>
   }

@@ -73,18 +73,6 @@
           <li><code class="is-code">didMount()</code></li>
         </ul>
 
-        <div class="alert alert-notice">
-          <p><strong>Note:</strong></p>
-          <p>
-            To keep the state of a Component while updating, use <code class="is-code">initState()</code> instead of
-            <code class="is-code">setState()</code> when initalizing.
-          </p>
-          <p>
-            You can initalize the state inside the <code class="is-code">constructor()</code>, or if the initialState
-            should be, for example, the result of a fetch inside the <code class="is-code">didMount()</code> method.
-          </p>
-        </div>
-
         <h3>Updating</h3>
         <p>
           When calling <code class="is-code">this.update()</code> on a class Component, these methods are called in the
@@ -97,29 +85,15 @@
         </ul>
 
         <h3>Unmounting</h3>
-        <p>This method is called when a class Component is unmounted:</p>
+        <p>This method is called when a class Component has unmounted (detached from the DOM):</p>
         <ul class="dot-list">
           <li><code class="is-code">didUnmount()</code></li>
         </ul>
 
-        <div class="alert alert-notice">
-          <p><strong>Note:</strong></p>
-          <p>
-            <code class="is-code">didUnmount()</code> will only be called once the node has been detached from the DOM.
-          </p>
-        </div>
-
         <h3>Server Side (SSR)</h3>
         <p>
-          If you use SSR, you should only manipulate the DOM inside
-          <code class="is-code">didMount()</code>, since <code class="is-code">didMount()</code> will not get executed
-          on the server-side.
+          In SSR, non of the lifecycle hook are called.
         </p>
-
-        <div class="alert alert-notice">
-          <p><strong>Note:</strong></p>
-          <p>Since v0.0.27 <code class="is-code">willMount()</code> will be ignored in SSR.</p>
-        </div>
 
         <h2>Update/Re-render class Components</h2>
         <p>
@@ -141,15 +115,7 @@
           You can call <code class="is-code">update()</code> from child Components, to
           <code class="is-code">update()</code> its parent Components. For more info, check the
           <a href="#update-components-example">update Components example</a>.
-        </p>
-
-        <div class="alert alert-notice">
-          <p><strong>Note:</strong></p>
-          <p>
-            To keep the state of a Component while updating, use <code class="is-code">initState()</code> not
-            <code class="is-code">setState()</code> when initalizing the state.
-          </p>
-        </div>
+        </p>     
 
         <h3>Provide/Render dynamic content on update</h3>
         <p>
