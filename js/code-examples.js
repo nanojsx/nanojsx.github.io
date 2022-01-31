@@ -327,6 +327,53 @@ const html = \`
 
   render(App, document.getElementById('root'))
 </script>`,
+  updateComponents: `import Nano, { Component } from 'nano-jsx'
+
+class Child extends Component {
+  constructor(props) {
+    super(props)
+    this.initState = { name: 'John' } // will set the state only if it is empty
+    this.state = { name: 'John' } // will overwrite the state
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.updateParent}>
+          Update Parent Component
+        </button>
+      </div>
+    )
+  }
+}
+
+class App extends Component {
+  _childref
+
+  handleSelfUpdate = () => {
+    this.update()
+  }
+
+  handleChildUpdate = () => {
+    this._childref.update()
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleChildUpdate}>
+          Update Child Component
+        </button>
+        <Child
+          updateParent={this.handleSelfUpdate}
+          ref={(el) => (this._childref = el)}
+        />
+      </div>
+    )
+  }
+}
+
+Nano.render(<App />, document.getElementById('root'))`,
   WithStyles: `// imports
 import { h, render } from 'nano-jsx/lib/core'
 import { withStyles } from 'nano-jsx/lib/withStyles'

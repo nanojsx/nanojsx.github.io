@@ -123,29 +123,12 @@
           elements.
         </p>
 
-        <h3>Update child Components</h3>
+        <h3>Provide dynamic content on update</h3>
         <p>
-          You can call <code class="is-code">update()</code> from parent Components to
-          <code class="is-code">update()</code> its child Components through Callback Refs or directly. Since the parent
-          Component updates, it will then re-mount the child Components.
+          The <code class="is-code">update(update?: any)</code> method can receive an optional argument. When provided
+          it will be passed as parameter to the Components <code class="is-code">render(param)</code> function and can
+          be accessed inside it.
         </p>
-
-        <h3>Update parent Components from childs</h3>
-        <p>
-          You can call <code class="is-code">update()</code> from child Components, to
-          <code class="is-code">update()</code> its parent Components. For more info, check the
-          <a href="#update-components-example">update Components example</a>.
-        </p>
-
-        <h3>Provide/Render dynamic content on update</h3>
-        <p>
-          The class Component <code class="is-code">update(update?: any)</code> method can receive an optional first
-          argument, which can be typeof any. When provided it will be passed as parameter to the Components
-          <code class="is-code">render(param)</code> function and can be accessed inside it.
-        </p>
-
-        <h3 id="update-components-example">Update Components example</h3>
-        <pre><code id="updateComponents" class="language-tsx">loading...</code></pre>
 
         <h2>Component Props</h2>
         <p>You can simply pass props to children as you are used to in other JSX libraries.</p>
