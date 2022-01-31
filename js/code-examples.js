@@ -25,37 +25,45 @@ class Form extends Component {
 }
 
 render(<Form />, document.getElementById('root'))`,
-  TodoList: `import Nano, { Component } from 'nano-jsx'
+  TodoList: `import { h, render, Component, tick } from 'nano-jsx'
 
 class Todos extends Component {
   todos: string[] = []
+  input: HTMLInputElement
 
   submitHandler(e: Event) {
     e.preventDefault()
-    const input = document.getElementById('input') as HTMLInputElement
-    this.todos.push(input.value)
+    this.todos.push(this.input.value)
     this.update()
+
+    // get focus back on the input element
+    tick(() => {
+      this.input.focus()
+    })
+
+    // Of course, instead of doing all this stuff with update(), focus(), adding to the todos array, etc..,
+    // you could also simply use Vanilla JS: Create a new HTMLListElement and use appendChild() on the <ul> element.
   }
 
   render() {
     return (
-      <form onSubmit={(e: Event) => this.submitHandler(e)}>
-        <label>
-          <span>Add Todo</span>
-          <input id="input" />
-        </label>
-        <button type="submit">Add</button>
+      <div>
+        <form onSubmit={(e: Event) => this.submitHandler(e)}>
+          <label>Add Todo</label>
+          <input ref={el => (this.input = el)} id="my-input" />
+          <button type="submit">Add</button>
+        </form>
         <ul>
-          {this.todos.map((todo) => (
+          {this.todos.map(todo => (
             <li>{todo}</li>
           ))}
         </ul>
-      </form>
+      </div>
     )
   }
 }
 
-Nano.render(<Todos />, document.getElementById('root'))`,
+render(<Todos />, document.getElementById('root'))`,
   Clock: `class Clock extends Component {
   time = Date.now()
   timer: number
@@ -93,7 +101,7 @@ Nano.render(<Clock />, document.body)`,
 
     return (
       <div>
-        <input id="checkbox" type="checkbox" {...(this.checked ? { checked: true } : {})} onClick={this.toggle} />
+        <input id="checkbox" type="checkbox" checked={this.checked || undefined} onClick={this.toggle} />
         <Text />
       </div>
     )
