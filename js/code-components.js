@@ -123,6 +123,80 @@ const Topics = (props) => {
 
 // render a specific route on the server-side
 renderSSR(<App />, { pathname: '/123456/detail' })`,
+  RouterListener: `import { Route, Switch, Link, Listener, parseParamsFromPath, matchPath } from 'nano-jsx/lib/components/router'
+import { h, render } from 'nano-jsx/lib/core'
+import { Component } from 'nano-jsx/lib/component'
+
+// fetch a post by id (with random delay)
+const fetchPostMock = (id: string) =>
+  new Promise(resolve => setTimeout(() => resolve(\`This is post #\${id}\`), Math.random() * 100 + 100))
+
+class BlogPage extends Component {
+  listener = Listener().use()
+
+  async getPost() {
+    const params = parseParamsFromPath(this.props.route.path)
+    // same as:
+    // const match = matchPath(window.location.pathname, { path: this.props.route.path })
+    // if (!match) return
+    // const { params } = match
+
+    if (params?.id) {
+      const post = await fetchPostMock(params.id)
+      this.update(post)
+    }
+  }
+
+  async didMount() {
+    this.listener.subscribe((curr, prev) => {
+      if (curr !== prev && /^\/blog\/\d+$/.test(curr)) {
+        this.getPost()
+      }
+    })
+    this.getPost()
+  }
+
+  public didUnmount() {
+    this.listener.cancel()
+  }
+
+  render(post: string) {
+    if (post) return <div>{post}</div>
+    return <div>loading...</div>
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <div id="root">
+        <nav style="display: flex; flex-direction: column;">
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/blog/219">Blog #219</Link>
+          <Link to="/blog/584">Blog #584</Link>
+          <Link to="/blog/855">Blog #855</Link>
+        </nav>
+
+        <section>
+          <Switch>
+            <Route exact path="/">
+              {() => <h1>HomePage</h1>}
+            </Route>
+            <Route exact path="/about">
+              {() => <h1>AboutPage</h1>}
+            </Route>
+            <Route exact path="/blog/:id">
+              <BlogPage />
+            </Route>
+          </Switch>
+        </section>
+      </div>
+    )
+  }
+}
+
+render(<App />, document.getElementById('root'))`,
   Suspense: `import { Suspense } from 'nano-jsx/lib/components/suspense'
 
 // "fetchNames" is a function that returns a promise

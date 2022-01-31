@@ -69,6 +69,30 @@
         <p>A isomorphic router is included.</p>
         <pre><code id="Router" class="language-tsx">loading...</code></pre>
 
+        <div class="alert alert-notice">
+          <p><strong>Problem:</strong></p>
+
+          <ul class="dot-list">
+            <li>&lt;Switch /&gt; will only trigger a re-render if the &lt;Route /&gt; component changes.</li>
+            <li>
+              If &lt;Route /&gt; has a dynamic path like &lt;Route exact path="/blog/:id"&gt; and the user navigates
+              from /blog/584' to '/blog/219', &lt;Switch /&gt; will NOT trigger a re-render and the user will never see
+              '/blog/219'.
+            </li>
+          </ul>
+
+          <p>
+            <strong>Solution:</strong>
+            <p>
+              You can use the <b>Router Listener</b> inside &lt;Blog /&gt; to listen for route changes.
+              This will allow you to fetch the new blog post (based on the new id in "/blog/:id") and update the
+              component.<br />(see example below and <a href="https://youtu.be/eUBuFORqPdo">this video</a>)
+            </p>
+          </p>
+        </div>
+        <h3>Router Listener</h3>
+        <pre><code id="RouterListener" class="language-tsx">loading...</code></pre>
+
         <h2 id="suspense">&lt;Suspense /&gt;</h2>
         <p>
           Use Suspense for async fetching resources from your server. Add <code class="is-code">cache</code> if you want

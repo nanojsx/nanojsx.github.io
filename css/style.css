@@ -305,6 +305,7 @@ pre[class*='language-'] {
 }
 
 .alert p,
+.alert li,
 .alert code.is-code,
 .alert a {
   font-size: 16px;
