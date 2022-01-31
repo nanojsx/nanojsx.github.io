@@ -1,4 +1,30 @@
 const code = {
+  Form: `import { h, render } from 'nano-jsx/lib/core'
+import { Component } from 'nano-jsx/lib/component'
+
+class Form extends Component {
+  handleSubmit(event) {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    for (const [name, value] of formData.entries()) {
+      console.log(name + ': ' + value) // fname: John // lname: Doe
+    }
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit.bind(this)}>
+        <input type="text" id="fname" name="fname" value="John" />
+        <br />
+        <input type="text" id="lname" name="lname" value="Doe" />
+        <br />
+        <input type="submit" value="Submit" />
+      </form>
+    )
+  }
+}
+
+render(<Form />, document.getElementById('root'))`,
   TodoList: `import Nano, { Component } from 'nano-jsx'
 
 class Todos extends Component {
