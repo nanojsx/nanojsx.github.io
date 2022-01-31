@@ -191,7 +191,7 @@ class MyComponent extends Component {
   render() {
     return (
       <div>
-        <p>{this.store.state.name}</p>
+        <p>{this.state.name}</p>
         <p>{getState('some-state-id').number}</p>
       </div>
     ) // <div><p>John Doe</p><p>100</p></div>
