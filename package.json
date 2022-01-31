@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "live-server",
-    "format": "prettier --write \"**/*.html\""
+    "format": "prettier --write \"**/*.html\" --write \"js/code-*.js\" --write \"**/style.css\""
   },
   "devDependencies": {
     "@yandeu/prettier-config": "^0.0.3",

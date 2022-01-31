@@ -133,7 +133,8 @@ const App = () => (
     </Suspense>
   </div>
 )
-`, FetchSuspenseIsomorphic: `// app component
+`,
+  FetchSuspenseIsomorphic: `// app component
 class App extends Component {
 
   // a empty static method
@@ -378,5 +379,5 @@ const App = () => {
 }
 
 render(<App />, document.getElementById('root'))
-`,
+`
 }

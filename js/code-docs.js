@@ -345,7 +345,7 @@ const App = () => {
   dangerouslySetInnerHTML2: `const App = () => {
   return <div innerHTML={{ __dangerousHtml: html }} />;
 }`,
-withStyles: `import { h, render } from 'nano-jsx/lib/core'
+  withStyles: `import { h, render } from 'nano-jsx/lib/core'
 import { withStyles } from 'nano-jsx/lib/withStyles'
 
 const App = () => {

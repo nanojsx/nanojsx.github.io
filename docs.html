@@ -113,9 +113,7 @@
         </ul>
 
         <h3>Server Side (SSR)</h3>
-        <p>
-          In SSR, non of the lifecycle hook are called.
-        </p>
+        <p>In SSR, non of the lifecycle hook are called.</p>
 
         <h2>Update/Re-render class Components</h2>
         <p>
@@ -137,7 +135,7 @@
           You can call <code class="is-code">update()</code> from child Components, to
           <code class="is-code">update()</code> its parent Components. For more info, check the
           <a href="#update-components-example">update Components example</a>.
-        </p>     
+        </p>
 
         <h3>Provide/Render dynamic content on update</h3>
         <p>
@@ -190,8 +188,15 @@
         <pre><code id="dangerouslySetInnerHTML2" class="language-tsx">loading...</code></pre>
 
         <h2>withStyles()</h2>
-        <p>Nano JSX offers an optional <code class="is-code">withStyles()</code> HOC (Higher Order Component) to style your Components.</p>
-        <p>You can simply pass your css as a string, or use an appropriate loader, for <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> or similar, to import css or sass/scss files.</p>
+        <p>
+          Nano JSX offers an optional <code class="is-code">withStyles()</code> HOC (Higher Order Component) to style
+          your Components.
+        </p>
+        <p>
+          You can simply pass your css as a string, or use an appropriate loader, for
+          <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> or similar, to import css or
+          sass/scss files.
+        </p>
         <p>You can pass to <code class="is-code">withStyles()</code> an array of (or separated by a comma):</p>
         <ul class="dot-list">
           <li><code class="is-code">string</code></li>
@@ -201,7 +206,8 @@
         <div class="alert alert-info">
           <p><strong>Info:</strong></p>
           <p>
-            For an example configuration using Webpack and <code class="is-code">withStyles().</code> with Sass/SCSS, have a look at the
+            For an example configuration using Webpack and <code class="is-code">withStyles().</code> with Sass/SCSS,
+            have a look at the
             <a href="https://github.com/nanojsx/template" target="_blank" rel="noopener">Nano JSX Template</a>
           </p>
         </div>
