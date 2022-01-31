@@ -36,6 +36,84 @@ Nano.render(<App name="Nano" />, document.getElementById('root'))`,
   render(jsx\`<\${App} name="Nano" />\`, document.getElementById('root'))
 <\/script>
     `,
+  validCode: `import { h, render } from 'nano-jsx/lib/core'
+import { Component } from 'nano-jsx/lib/component'
+
+const styles = {
+  popup: {
+    background: 'red',
+    padding: '16px',
+    position: 'fixed',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
+  }
+}
+
+class Popup {
+  static id = 'popup'
+
+  static Show() {
+    if (document.getElementById(Popup.id)) return
+
+    const popup = (
+      <div onClick={Popup.Hide} style={{ ...styles.popup }}>
+        <h1>
+          I'm a popup
+          <br />
+          <small>click me to close</small>
+        </h1>
+      </div>
+    )
+
+    popup.id = Popup.id
+    document.body.appendChild(popup)
+  }
+
+  static Hide() {
+    const popup = document.getElementById(Popup.id)
+    if (popup) popup.remove()
+  }
+}
+
+class Buttons extends Component {
+  didMount() {
+    this.initState = { counter: 0 }
+  }
+
+  increaseCounterHandler() {
+    this.setState({ counter: (this.state.counter += 1) })
+
+    const counter = document.getElementById('counter')
+    if (counter) counter.innerText = \`Counter: ${this.state.counter}\`
+  }
+
+  render() {
+    return (
+      <div>
+        <button onClick={Popup.Show}>Show Popup</button> <br />
+        <button onClick={() => this.increaseCounterHandler()}>Increase Counter</button>
+        <div id="counter">Counter: 0</div>
+      </div>
+    )
+  }
+}
+
+const VanillaApp = () => {
+  // do some vanilla stuff
+  // ...
+
+  // render the buttons
+  const buttons = render(<Buttons />)
+
+  // append buttons to DOM
+  const root = document.getElementById('root')
+  root?.appendChild(buttons)
+}
+
+window.addEventListener('load', () => {
+  VanillaApp()
+})`,
   updateComponents: `import Nano, { Component } from 'nano-jsx'
 
 class Child extends Component {
