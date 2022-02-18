@@ -1,24 +1,24 @@
 const code = {
-  projectTemplate: `npx degit nanojsx/template nano
-
+  projectTemplate: `// https://github.com/nanojsx/template
+npx degit nanojsx/template nano
 cd nano
-
 npm install
 npm run dev`,
   npmInstall: `# install nano-jsx
 npm i nano-jsx`,
   import: `// app.tsx
-import Nano from 'nano-jsx'
+import { h, render } from 'nano-jsx/lib/core'
 
 const App = (props) => <h1>Hello from {props.name}!</h1>
 
-Nano.render(<App name="Nano" />, document.getElementById('root'))`,
+render(<App name="Nano" />, document.getElementById('root'))`,
   tsConfig: `// tsconfig.json
 {
   "compilerOptions": {
     "target": "ES2015",
     "jsx": "react",
-    "jsxFactory": "Nano.h",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     // More compiler options…
   }
 }     `,
