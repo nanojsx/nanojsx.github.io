@@ -91,7 +91,7 @@ Router.to('/another-page')
 
   // :id can be anything
   <Router.Route exact path="/:id/details">
-    // some component
+    <Topic /> // see below
   </Router.Route>
 
   // :id needs to match the regex /^[a-f0-9]{6}$/
@@ -117,6 +117,17 @@ const Topics = (props) => {
           <Router.Route path={\`$\{path\}/two\`}>topic two</Router.Route>
         </Router.Switch>
       </div>
+    </div>
+  )
+
+// how the Topic component could look like
+const Topic = async (props) => {
+  const id = props.route.params.id
+  let topic = await fetch(\`/api/topic/$\{id\}\`)
+  return (
+    <div id="topic">
+      <h2>topic.title</h2>
+      ...
     </div>
   )
 }
