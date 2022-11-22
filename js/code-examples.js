@@ -371,6 +371,7 @@ class Child extends Component {
   }
 
   render() {
+    console.log('render Child')
     return (
       <div>
         <button onClick={this.props.updateParent}>
@@ -384,23 +385,24 @@ class Child extends Component {
 class App extends Component {
   _childref
 
-  handleSelfUpdate = () => {
+  handleSelfUpdate() {
     this.update()
   }
 
-  handleChildUpdate = () => {
+  handleChildUpdate() {
     this._childref.update()
   }
 
   render() {
+    console.log('render App')
     return (
       <div>
-        <button onClick={this.handleChildUpdate}>
+        <button onClick={this.handleChildUpdate.bind(this)}>
           Update Child Component
         </button>
         <Child
-          updateParent={this.handleSelfUpdate}
-          ref={(el) => (this._childref = el)}
+          updateParent={this.handleSelfUpdate.bind(this)}
+          ref={el => (this._childref = el)}
         />
       </div>
     )
