@@ -91,7 +91,7 @@ Nano.render(<Clock />, document.body)`,
   Checkbox: `class Checkbox extends Component {
   checked = true
 
-  toggle = (e: Event) => {
+  toggle(_e: Event) {
     this.checked = !this.checked
     this.update()
   }
@@ -101,7 +101,7 @@ Nano.render(<Clock />, document.body)`,
 
     return (
       <div>
-        <input id="checkbox" type="checkbox" checked={this.checked || undefined} onClick={this.toggle} />
+        <input id="checkbox" type="checkbox" checked={this.checked || undefined} onClick={this.toggle.bind(this)} />
         <Text />
       </div>
     )
