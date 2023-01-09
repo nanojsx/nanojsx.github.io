@@ -7,7 +7,8 @@ npm run dev`,
   npmInstall: `# install nano-jsx
 npm i nano-jsx`,
   import: `// app.tsx
-import { h, render } from 'nano-jsx/lib/core'
+import { render } from 'nano-jsx'      // defaults to CommonJS
+import { render } from 'nano-jsx/esm'  // import as ESM
 
 const App = (props) => <h1>Hello from {props.name}!</h1>
 
@@ -15,10 +16,10 @@ render(<App name="Nano" />, document.getElementById('root'))`,
   tsConfig: `// tsconfig.json
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "jsx": "react",
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment",
+    "target": "ES2015",    
+    "jsx": "react-jsx",
+    "jsxImportSource": "nano-jsx/lib"  // lib for CommonJS
+    "jsxImportSource": "nano-jsx/esm"  // esm for ESModules
     // More compiler options…
   }
 }     `,
