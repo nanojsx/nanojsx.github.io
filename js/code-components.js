@@ -149,7 +149,7 @@ class BlogPage extends Component {
 
   async didMount() {
     this.listener.subscribe((curr, prev, event) => {
-      if (curr !== prev && /^\/blog\/\d+$/.test(curr)) {
+      if (curr !== prev && /^\\/blog\\/\\d+$/.test(curr)) {
         this.getPost()
       }
     })
